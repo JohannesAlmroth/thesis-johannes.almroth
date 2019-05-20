@@ -1,0 +1,54 @@
+This chapter typically contains a discussion of the related work.
+BibTeX is a great way to manage bibliography information. If you
+use Emacs, tools like RefTeX will help you insert references into
+your code. Given that we are not constrained for space, we can use
+citations that look like this: \citep{Acm_Curriculum_2013,
+  CWE_193}. To give the text a bit better flow, you can sometimes
+work them into the text. Using numbered references is allowed but
+it will cause them to be much like Dijkstra's
+\citeyearpar{Dijkstra_1968} dreaded GOTO's.
+
+\chapter{Methodology}
+\lipsum[1] Code \c{int inline = ++x;} looks like so:
+
+\begin{Code}
+public class HelloWorld<T> extends Something<T> {
+  public static void main(String[] args) {
+    System.out.println("Hello, world!");
+  }
+}
+\end{Code}
+
+You can also get it with line numbers:
+
+\begin{Code_Numbered}
+public class HelloWorld<T> extends Something<T> {
+  public static void main(String[] args) {
+    System.out.println("Hello, world!"); @\label{code:hello}@
+  }
+}
+\end{Code_Numbered}
+
+
+You can refer to lines like this: \verb+Line \ref{code:hello}+ (gives you Line \ref{code:hello}, see source for more details).
+
+Verbatim text is set in a monospaced typewriter font:
+
+\begin{verbatim}
+----------,
+          |           ASCII art!
+          '--> (*)
+\end{verbatim}
+
+\lipsum[2-4]
+
+\begin{listing*}[t]
+\begin{Code_Numbered}
+public class HelloWorld<T> extends Something<T> {
+  public static void main(String[] args) {
+    System.out.println("Hello, world!"); @\label{code:hello}@
+  }
+}
+\end{Code_Numbered}
+\caption{If you like, you can have code listings inside a \c{listing} float.}
+\end{listing*}

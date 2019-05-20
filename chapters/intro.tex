@@ -1,0 +1,68 @@
+* Identifier names are important
+
+* We have two identifier styles
+
+* Some history 
+
+* Two other studies
+
+* Some background on them
+
+* 
+
+\begin{MarginNote}[3cm]
+  \lipsum[2]
+
+  \RED{Use linebreaks\-to\-insert\-hyphens\-where\-needed\-in the margin.}
+\end{MarginNote}
+
+Footnotes\Footnote[-1cm]{Like this one. Note the manual vertical offset in the source code.} will go into the margin. They should be used sparingly.
+
+
+\section{Purpose and Goals}
+
+\lipsum[4-6]
+
+\section{Thesis Outline}
+
+\lipsum[7]
+
+\begin{figure}[t]
+  \begin{center}
+    \vspace*{1em}
+    \verb+\includegraphics[width=0.9\linewidth]{image.pdf}+
+    \vspace*{1em}
+  \end{center}
+  \caption{This is a figure, it will be placed top-most of a page (if possible).}
+  \label{fig:example-1}
+\end{figure}
+
+\begin{figure*}[t]
+  \begin{center}
+    \vspace*{1em}
+    \verb+\includegraphics[width=0.9\linewidth]{image.pdf}+
+    \vspace*{1em}
+  \end{center}
+\caption{This is a wider figure, it too will be placed top-most of a page (if possible).}
+  \label{fig:example-1}
+\end{figure*}
+
+
+\begin{table}[b]
+  \caption{This is a table, it will be placed at the bottom of a
+    page (if possible). Note that captions for tables are placed
+    \emph{above} the table.}
+  \begin{center}
+    \begin{tabular}{|l|l|l|}
+      \hline
+      $A$ & $B$ & $C$ \\
+      \hline
+      $A$ & \multicolumn{2}{|c|}{$B$ \& $C$} \\
+      \hline
+      $A$ & $B$ & $C$ \\
+      \hline
+    \end{tabular}
+  \end{center}
+  
+  \label{tab:example-1}
+\end{table}
