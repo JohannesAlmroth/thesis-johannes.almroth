@@ -1,54 +1,13 @@
-This chapter typically contains a discussion of the related work.
-BibTeX is a great way to manage bibliography information. If you
-use Emacs, tools like RefTeX will help you insert references into
-your code. Given that we are not constrained for space, we can use
-citations that look like this: \citep{Acm_Curriculum_2013,
-  CWE_193}. To give the text a bit better flow, you can sometimes
-work them into the text. Using numbered references is allowed but
-it will cause them to be much like Dijkstra's
-\citeyearpar{Dijkstra_1968} dreaded GOTO's.
+\begin{itemize}
+  \item Have a specific background or spread it out
+  \item May be necessary to introduce certain things
+  \item From our running example, we might discuss prior work on simplifying parallel programming, or SOTA with e.g., threads
+\end{itemize}
 
-\chapter{Methodology}
-\lipsum[1] Code \c{int inline = ++x;} looks like so:
+In 2010 a study published at ICPC examined how identifier naming conventions affect code comprehension with the help of eye tracking equipment. The two styles that were analysed were camelCase as well as under\_score identifiers. The goal of this project is to try and replicate the results of the study with the same method, as well as taking more variables into account, if time and the sample size of the study group permits.
 
-\begin{Code}
-public class HelloWorld<T> extends Something<T> {
-  public static void main(String[] args) {
-    System.out.println("Hello, world!");
-  }
-}
-\end{Code}
+Identifier names are keystones in software programming for presenting and working with data in any kind of function. If any way of writing these identifiers improves the speed of which we comprehend the code, it could potentially entail better overall program understanding.
 
-You can also get it with line numbers:
+Historically, underscores were used as the primary identifying style because of early programming languages being case insensitive. Later on, camel-case identifiers became the norm, maybe partially because of the number of keystrokes and ease of writing it had over using underscores.
 
-\begin{Code_Numbered}
-public class HelloWorld<T> extends Something<T> {
-  public static void main(String[] args) {
-    System.out.println("Hello, world!"); @\label{code:hello}@
-  }
-}
-\end{Code_Numbered}
-
-
-You can refer to lines like this: \verb+Line \ref{code:hello}+ (gives you Line \ref{code:hello}, see source for more details).
-
-Verbatim text is set in a monospaced typewriter font:
-
-\begin{verbatim}
-----------,
-          |           ASCII art!
-          '--> (*)
-\end{verbatim}
-
-\lipsum[2-4]
-
-\begin{listing*}[t]
-\begin{Code_Numbered}
-public class HelloWorld<T> extends Something<T> {
-  public static void main(String[] args) {
-    System.out.println("Hello, world!"); @\label{code:hello}@
-  }
-}
-\end{Code_Numbered}
-\caption{If you like, you can have code listings inside a \c{listing} float.}
-\end{listing*}
+The results from the 2010 study concluded that there were no significant differences in regards to accuracy between the two styles. However, the camel-cased identifiers took longer to identify. The 2010 study in turn sought to replicate a study conducted in 2009, which similarly concluded that camel-cased identifiers were slower to identify, but that underscored identifiers brought about less accuracy. It's worth mentioning that the two studies differed their methods of gathering data, as the 2009 study used a game like interface to gather timed responses, while the 2010 study used eye tracking equipment to gather more quantitative data.
