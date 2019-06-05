@@ -9,13 +9,15 @@
 \end{itemize}
 \fi
 
-Naming variable identifiers in a effective and efficient way is important for code comprehension. Good identifiers enables, for example, abstraction of concepts, collaboration and code preservation. This is put into perspective when reading a paper by Deissenboeck \etal \cite{Concise-Naming} which states that 70\% of the source code for the popular Java IDE program \textit{Eclipse} consists of identifiers. The two main styles of naming identifiers in code today are camelCasing (\eg coolBeans) and underscore casing (\eg cool\_beans). \footnote{Underscore casing is more commonly known as snake casing, though the previous expression will be used to be more consistent with the established literature}
+Naming variable identifiers in a effective and efficient way is important for code comprehension. A programmer can only get so far with using variables like \textit{x} and \textit{y}, and to write code that encapsulates complex mental models of thinking that need to be understood by multiple people in a development team, appropriate identifier names need to be chosen. Good identifiers enables, for example, abstraction of concepts, collaboration and code preservation. This is put into perspective when reading a paper by Deissenboeck \etal \cite{Concise-Naming} which states that 70\% of the source code for a given release of the popular Java IDE program \textit{Eclipse} consisted solely of identifiers. But assuming that the wording of the identifiers are sufficient, the question remains of \textit{how} they can be written to further aid in code comprehension.
 
-Deciding which one to use is often a matter of the given convention within the programming language that the code is written in. Historically, the arguments for using camel casing is that it requires fewer keystrokes and improves typing speed. 
+The two main styles of writing identifiers in code today are camelCasing (\eg ~coolBeans) and underscore casing (\eg cool\_beans). \footnote{Underscore casing is more commonly known as snake casing, though the previous expression will be used to be more consistent with the established literature}
 
-So far there's been two other studies aiming to determine if there is a significant difference between the two styles. The first study conducted by Binkley \etal in 2009 \cite{to-camelCase-or-under-score} with 135 subjects concluded that the camel casing style leads to a better all round performance, at least when the subject is trained on the style, despite taking on average 0.42 seconds longer to read. The second study conducted by Sharif \etal in 2010 \cite{eye-tracking-study} with the help of eye-tracking equipment found that camel cased words took on average 0.932 seconds longer to read, and concludes that the under score style leads to an improvement in both reading time and visual effort. Even though the two studies differ in their conclusions, the eye-tracking study suffers from a small sample size, with a meagre 15 subjects compared to the 135 subjects in the 2009 study. However, the eye-tracking equipment used in the 2010 study lends a lot of credibility to the data presented.
+Deciding which one to use is often a matter of the given convention within the programming language that the code is written in. As noted in a previous study on the subject \cite{eye-tracking-study}, early programming languages such as Basic, Cobol, Fortran and Ada were case-insensitive, and thus encouraged the use either the underscore or hyphens to write their variables. When languages such as C and Java were introduced, camel casing became more common.
+The arguments for using camel casing is that it requires fewer keystrokes and improves typing speed,but natural language research suggests that this is the wrong approach. A paper by Epelboim \etal \cite{Fillers-in-text} found that un-spaced text lead to a 10-20\% slower reading speed in subjects.
 
-This study will also be conducted with the help of eye tracking equipment and will aim to provide additional data that would further aid in the judgement regarding which one of these two styles would be the most beneficiary for code comprehension. 
+
+
 
 
 \section{Purpose and Goals}
@@ -29,6 +31,8 @@ This study will also be conducted with the help of eye tracking equipment and wi
 \end{itemize}
 \fi
 
+This study will aim to provide additional data that would further aid in the judgement regarding which one of these two styles would be the most beneficiary for code comprehension. Furthermore, it will use the same data gathering equipment in the form of an eye-tracker, and hopefully achieve a more solid statistical significance through a higher subject count.
+
 \section{Delimitations}
 \iffalse
 \begin{itemize}
@@ -36,4 +40,4 @@ This study will also be conducted with the help of eye tracking equipment and wi
 \end{itemize}
 \fi
 
-I will limit the project by not extending the original study with more than a few additional variables that are relevant to the subject. I will furthermore limit the size of participants to the minimum amount necessary to achieve statistical significancy, if time doesn't permit otherwise. All data gathered will solely be through the same means used in the original 2010 study, the Tobii eye tracker as well as interviews.
+The study will be limited by primarily aiming to replicate the 2010 study. The same test data and variables will be gathered, as well as focusing on acquiring more subjects. Additionally, a few extra variables about the subjects will be gathered pertaining to previous programming experiences as well as their identifier style of choice, as to expand the given research and to contribute data to the [...] (research area?)
