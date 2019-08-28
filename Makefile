@@ -1,6 +1,9 @@
 main:
 	pdflatex main
 
+spec:
+	markdown-pdf spec.md
+
 bib:
 	bibtex main
 
