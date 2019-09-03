@@ -33,14 +33,14 @@
 
 \newcommand\myhrulefill[1]{\leavevmode\leaders\hrule height#1\hfill\kern0pt}
 \DeclareCaptionFormat{FigFormat}{{\color{black}\myhrulefill{0.5pt}}\\#1#2#3}
-\captionsetup[figure]{format=FigFormat}
-\captionsetup[table]{format=FigFormat}
+%\captionsetup[figure]{format=FigFormat}
+%\captionsetup[table]{format=FigFormat}
 
 \DeclareCaptionFormat{LstFormat}{\textsf{Listing}~\arabic{chapter}.\arabic{listing}:#2#3}
 \floatstyle{ruled}
 \newfloat{listing}{thp}{lol}
 \floatname{listing}{Listing}
-\captionsetup[listing]{format=LstFormat}
+%\captionsetup[listing]{format=LstFormat}
 
 
 \NewEnviron{MarginNote}[1][0mm]{\marginnote{\footnotesize\justifying\BODY}[#1]}
