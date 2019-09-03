@@ -6,36 +6,45 @@
  note = {\url{https://cwe.mitre.org/data/definitions/193.html}}
 }
 
-@book{Acm_Curriculum_2013,
- author = {{Joint Task Force on Computing Curricula} and {Association for Computing Machinery (ACM)} and {IEEE Computer Society}},
- title = {{C}omputer {S}cience {C}urricula 2013: {C}urriculum {G}uidelines for {U}ndergraduate {D}egree {P}rograms in {C}omputer {S}cience},
- publisher = {ACM},
- year = {2013},
+@book{placeholder,
+ author = {Luca Feltrin and Galini Tsoukaneri and Massimo Condoluci and Chiara Buratti and Toktam Mahmoodi and Mischa Dohler and Roberto Verdone},
+ title = {Narrowband IoT: A Survey on Downlink and Uplink Perspectives},
+ publisher = {IEEE},
+ year = {2019, },
  note = {999133},
  address = {New York, NY, USA},
  isbn = {978-1-4503-2309-3}
 }
 
-% 70% of Eclipse consists of identifiers,
-@article{Concise-Naming,
- author = {Florian Deissenboeck and Markus Pizka},
- title = {Concise and consistent naming},
- journal = {Software Qual Journal},
- year = {2006},
- number = {3},
- volume = {14},
- pages = {261--282},
- doi = {10.1007/s11219-006-9219-1},
- bibsource = {Springer - International Publiser Science, Technology, Medicine, https://link.springer.com/},
- biburl = {https://link.springer.com/article/10.1007/s11219-006-9219-1},
- note = {eclipse.org},
+% Overview article of NB-IoT technology	
+@article{NB-overview,
+ author = {Luca Feltrin and Galini Tsoukaneri and Massimo Condoluci and Chiara Buratti and Toktam Mahmoodi and Mischa Dohler and Roberto Verdone},
+ title = {Narrowband IoT: A Survey on Downlink and Uplink Perspectives},
+ journal = {IEEE Wireless Communications},
+ year = {2019},
+ number = {1},
+ volume = {26},
+ pages = {78--86},
+ doi = {10.1109/MWC.2019.1800020},
+ bibsource = {IEEE - IEEE Xplore Digital Library, https://ieeexplore.ieee.org/Xplore/home.jsp},
+ biburl = {https://ieeexplore-ieee-org.ezproxy.its.uu.se/document/8641430},
+ note = {},
+}
+
+
+@online{what_is_iot,
+  author = {Steve Ranger},
+  title = {What is the IoT? Everything you need to know about the Internet of Things right now},
+  year = 2018,
+  url = {https://www.zdnet.com/article/what-is-the-internet-of-things-everything-you-need-to-know-about-the-iot-right-now/},
+  urldate = {2019-09-03}
 }
 
 % First study, 135 participants, favours camelCase
 @inproceedings{to-camelCase-or-under-score,
- author = {Dave Binkley and Marcia Davis and Dawn Lawrie and Christopher Morrel},
- title = {To CamelCase or Under\_score},
- conference = {IEEE 17th International Conference on Program Comprehension},
+ author = {Luca Feltrin and Galini Tsoukaneri and Massimo Condoluci and Chiara Buratti and Toktam Mahmoodi and Mischa Dohler and Roberto Verdone},
+ title = {Narrowband IoT: A Survey on Downlink and Uplink Perspectives},
+ conference = {IEEE Wireless},
  location = {Vancouver, BC, Canada},
  month = {May},
  year = {2009},
@@ -43,76 +52,3 @@
  doi = {10.1109/ICPC.2009.5090039},
 }
 
-% Second study, eye-tracking, 15 participants, favours snake_case
-@inproceedings{eye-tracking-study,
- author = {Bonita Sharif and Jonathan I. Maletic},
- title = {An Eye Tracking Study on camelCase and under\_score Identifier Styles},
- conference = {IEEE 18th International Conference on Program Comprehension},
- location = {Braga, Minho, Portugal},
- month = {June-July},
- year = {2010},
- publisher = {IEEE},
- doi = {10.1109/ICPC.2010.41},
-}
-
-% Fillers in text
-@article{Fillers-in-text,
- author = {Julie Epelboim and James R. Booth and Rebecca Ashkenazy and Arash Taleghani and Robert M. Steinman},
- title = {Fillers and spaces in text: The importance of word recognition during reading},
- journal = {Vision Research},
- year = {1997},
- number = {20},
- volume = {37},
- pages = {2899-2914},
- doi = {10.1016/S0042-6989(97)00095-3},
- bibsource = {ScienceDirect, https://www.sciencedirect.com/},
- biburl = {https://www.sciencedirect.com/science/article/pii/S0042698997000953},
-}
-
-% Shows relation between code quality and program comprehension
-@inproceedings{naming-and-code-quality,
- author = {Simon Butler and Michel Wermelinger and Yijun Yu and Helen Sharp},
- title = {Relating Identifier Naming Flaws and Code Quality: An Empirical Study},
- conference = {2009 16th Working Conference on Reverse Engineering},
- location = {Lille, France},
- month = {October},
- year = {2009},
- publisher = {IEEE},
- doi = {10.1109/WCRE.2009.50},
-}
-
-% Shows how code readability correlates to code quality
-@inproceedings{code-quality-metric,
- author = {Raymond P.L. Buse and Westley R. Weimer},
- title = {A metric for software readability},
- conference = {ISSTA '08 Proceedings of the 2008 international symposium on Software testing and analysis},
- location = {Seattle, WA, USA},
- month = {July},
- year = {2008},
- publisher = {ACM},
- doi = {10.1145/1390630.1390647},
-}
-
-% Shows importance of code readability for maintenance
-@inproceedings{readability-maintenance,
- author = {K.K. Aggarwal and Y. Singh and J.K Chhabra},
- title = {An integrated measure of software maintainability},
- conference = {Annual Reliability and Maintainability Symposium. 2002 Proceedings (Cat. No.02CH37318)},
- location = {Seattle, WA, USA},
- month = {August},
- year = {2002},
- publisher = {IEEE},
- doi = {10.1109/RAMS.2002.981648},
-}
-
-% Shows the importance of identifier names
-@inproceedings{identifier-study,
- author = {D. Lawrie and C. Morrell, H. Feild and D. Binkley},
- title = {What's in a Name? A Study of Identifiers},
- conference = {14th IEEE International Conference on Program Comprehension (ICPC'06)},
- location = {Athens, Greece},
- month = {June},
- year = {2006},
- publisher = {IEEE},
- doi = {10.1109/ICPC.2006.51},
-}
