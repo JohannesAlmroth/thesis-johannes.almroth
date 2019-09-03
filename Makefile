@@ -1,5 +1,6 @@
 main:
 	pdflatex main
+	make clean
 
 spec:
 	markdown-pdf spec.md
@@ -14,7 +15,7 @@ cycle:
 	pdflatex main
 
 clean:
-	rm -f *.aux *.lof *.log *.lot *.pdf *.synctex.gz *.toc
+	rm -f *.aux *.lof *.log *.lot *.synctex.gz *.toc
 
 diff.tex:
 	@echo "This command assumes you have checked out the previous version"
