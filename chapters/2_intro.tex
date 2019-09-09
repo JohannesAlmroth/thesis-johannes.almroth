@@ -1,15 +1,4 @@
-\iffalse
-\begin{itemize}
-	\item Identifier names are important
-	\item We have two identifier styles
-	\item Some history 
-	\item Two other studies
-	\item Some background on them
-	\item Reference all terms introduced
-\end{itemize}
-\fi
-
-Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilometers north of Stockholm. Vetek constructs their own scales and weighing systems, as well as reselling products from other manufacturers. Vetek aims to improve their services, and as such are interested in the possible use cases IoT (Internet of Things) technology that could be combined with their products. IoT implies refers simply to connecting a device to the internet\cite{what_is_iot}, and would in this case refer to a scale, or more precisely, a load cell. NB-IoT (Narrowband-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as increased coverage, low power consumption and reduced complexity.\cite{NB-overview}
+Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilometers north of Stockholm. Vetek constructs their own scales and weighing systems, as well as reselling products from other manufacturers. Vetek aims to improve their services, and as such are interested in the possible use cases IoT (Internet of Things) technology that could be combined with their products. IoT refers simply to connecting a device to the internet\cite{what_is_iot}, and would in this case refer to a load cell. NB-IoT (Narrowband-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as increased coverage, low power consumption and reduced complexity.\cite{NB-overview}
 
 
 
@@ -24,7 +13,13 @@ Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilom
 \end{itemize}
 \fi
 
-The goal of this project is to establish a working internet connection with a load cell. The data sent from the load cell should be functionally identical to the data produced if the load cell was offline. Disregarding problems due to the service provider, data speeds and losses should not be abnormal. Using the components previously mentioned 
+NB-IoT is a relatively new technology, and as such, implementations and documentations remain sparse. With this in mind, even a small project such as this will serve as a guiding post for future work. The goal of this project is to establish a working internet connection with a load cell, and %[yadda yadda]. The data sent from the load cell should be functionally identical to the data produced if the load cell was offline. Disregarding problems due to the service provider, data speeds and losses should not be abnormal. Using the components previously mentioned [yadda yadda]
+
+The end-goal can be divided into two sub-goals. 
+\begin{itemize}
+	\item Enable internet communication from the micro-controller.
+	\item Enable data transfer from the load cell to the micro-controller.
+\end{itemize}
 
 
 \section{Delimitations}
@@ -33,4 +28,4 @@ The goal of this project is to establish a working internet connection with a lo
 	\item Scale down expectations and clarify
 \end{itemize}
 \fi
-The final implementation will not be a fully functional product ready to be used. Any extra functionality and improvements upon 
+The final implementation will not be a fully functional product ready to be used. Any extra functionality and improvements upon a internet-enabled load cell will only be done if time remains after the implementation and the completion of the thesis.
