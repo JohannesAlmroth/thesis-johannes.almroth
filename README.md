@@ -5,5 +5,6 @@ This is a bachelor thesis written by Johannes Almroth for the bachelor program o
 FiPy
 Expansion Board 3.1
 [Tutorial] (https://docs.pycom.io/gettingstarted/)
-
 **Don't start radio communications without antenna connected, since this may permanently damage the device**
+HX711 Load Cell Amplifier
+Load Cell **check model**
