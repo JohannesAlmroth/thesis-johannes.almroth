@@ -8,3 +8,7 @@ Expansion Board 3.1
 **Don't start radio communications without antenna connected, since this may permanently damage the device**
 HX711 Load Cell Amplifier
 Load Cell **check model**
+
+When running into  
+`>>> Can't run conf files, please run only python files`  
+make sure you're "standing" in the file you want to run.

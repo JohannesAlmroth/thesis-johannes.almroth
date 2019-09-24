@@ -4,7 +4,6 @@
 	],
 	"spellright.documentTypes": [
 		"markdown",
-		"plaintext",
 		"latex"
 	],
 	"python.pythonPath": "/usr/local/bin/python3"
