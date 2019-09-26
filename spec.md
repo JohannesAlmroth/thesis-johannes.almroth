@@ -4,13 +4,13 @@
 **Student:** Johannes Almroth, **Advisor:** Per Smedsrud, **Reviewer:** Per Gunningberg
 
 ## 1. Background
-NB-IoT (Narrowband IoT) is a relatively new LPWAN (Low Power Wide Area) radio technology developed by the 3GPP organization. The primary focus areas of NB-IoT are indoor coverage, low cost, long battery life as well as high connection density. Vetek, a Swedish scale supplier, wants to examine the potential applications this technology could bring to their business model. As a first step in this endeavour the complexity to enable online data communications with a loading cell unit needs to be investigated, which would be the aim of this thesis. The end-goal is to enable communications from the data readings of a load cell to an online platform via the use of NB-IoT.
+NB-IoT (Narrowband IoT) is a relatively new LPWAN (Low Power Wide Area) radio technology developed by the 3GPP organization. The primary focus areas of NB-IoT are indoor coverage, low cost, long battery life as well as high connection density. Vetek, a Swedish scale supplier, wants to examine the potential applications this technology could bring to their business model. As a first step in this endeavor the complexity to enable online data communications with a loading cell unit needs to be investigated, which would be the aim of this thesis. The end-goal is to enable communications from the data readings of a load cell to an online platform via the use of NB-IoT.
 
 
 ## 2. Problem Description and Approach
 Since NB-IoT is a new and emerging technology within the IoT field, limited documentation and knowledge is readily available. Some previous work and examples are available from the Computer Communications Group at Uppsala university, but simply getting a NB-IoT component integrated with a loading cell should pose enough of a challenge within the framework of a bachelor thesis.
 
-The necessary components for this projects includes a SIM-card connected to a NB-IoT network, a NB-IoT compatible microcontroller, as well as a load cell. Uppsala university will provide the NB-IoT SIM-card, and Vetek will provide the rest of the hardware. The specific models and functions of the needed components are outlined below:
+The necessary components for this projects includes a SIM-card connected to a NB-IoT network, a NB-IoT compatible micro-controller, as well as a load cell. Uppsala university will provide the NB-IoT SIM-card, and Vetek will provide the rest of the hardware. The specific models and functions of the needed components are outlined below:
 
 * FiPy: a development board that gives access to all major LPWAN technologies. FiPy is developed by PyCom and equipped with an expansion board to enable integration with other components via GPIO pinouts, as well as an LTE-antenna to enable LTE CAT M1 or NB1. MicroPython is enabled on the board, and as such is programmed via the Python programming language. The available protocols on the FiPy are:
 	* WiFi

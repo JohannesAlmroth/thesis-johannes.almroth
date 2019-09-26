@@ -72,20 +72,3 @@ def connect(list_of_logons):
                     net.sec, key), timeout=5000)
                 print('WLAN connection succeeded!')
                 break
-
-# 	wlan = WLAN(mode=WLAN.STA)
-# 	wifi_list = wlan.scan()
-
-# 	if(connect_aux(wlan, wifi_list, WORK_WIFI, WORK_KEY)):
-# 		return True
-# 	else:
-# 		return connect_aux(wlan, wifi_list, HOME_WIFI, HOME_KEY)
-
-# def connect_aux(wlan, wifi_list, ssid, key):
-# 	for wifi in wifi_list:
-# 		if wifi.ssid == ssid:
-# 			print('NETWORK FOUND!')
-# 			wlan.connect(wifi.ssid, auth=(wifi.sec, key), timeout=5000)
-# 			print('WLAN connection succeeded!')
-# 			return True
-# 		return False
