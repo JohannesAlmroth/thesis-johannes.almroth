@@ -1,8 +1,6 @@
 Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilometers north of Stockholm. Vetek constructs their own scales and weighing systems, as well as reselling products from other manufacturers.\cite{vetek} 
 
-Vetek aims to improve their services, and as such are interested in the possible use cases of IoT (Internet of Things) technology, and ultimately see how that can be applied to their own products. In this paper,the term IoT will simply mean ``a device connected to the internet''\cite{what_is_iot}. In a pilot project, Vetek wants to see how this connectivity can be implemented in a energy-efficient and effective manner. This would entail investigating factors such as power consumption, range and data rate. NB-IoT (Narrowband-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as increased coverage, low power consumption and reduced complexity.\cite{NB-overview}
-
-
+Vetek aims to improve their services, and as such are interested in the possible use cases of IoT (Internet of Things) technology, and ultimately see how that can be applied to their own products. In this paper,the term IoT will simply mean ``(a) device(s) connected to the internet''\cite{what_is_iot}. In a pilot project, Vetek wants to see how this connectivity can be implemented in a energy-efficient and effective manner. This would entail investigating factors such as power consumption, range and data rate. NB-IoT (Narrowband-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as wide coverage, low power consumption and low complexity.\cite{NB-overview} Using some form of NB-IoT compatible microcontroller and hooking it up to a basic load cell should provide sufficient testing grounds to see how this new functionality could improve existing products.
 
 
 \section{Purpose and Goals}
@@ -16,12 +14,12 @@ Vetek aims to improve their services, and as such are interested in the possible
 \end{itemize}
 \fi
 
-NB-IoT is a relatively new technology, and as such, implementations and documentations remain sparse. With this in mind, even a small project such as this will serve as a guiding post for future work. The goal of this project is to establish a working internet connection with a load cell through the NB-IoT technology. The data sent from the load cell should be functionally identical to the data produced if the load cell was offline. Disregarding problems due to a internet service provider, data speeds and losses should not be abnormal. Using the components previously mentioned replication of the project should be feasible with the documentation provided in this thesis.
+NB-IoT is a relatively new technology, and as such, implementations and documentations remain sparse. With this in mind, even a small project such as this will serve as a guiding post for future work. The goal of this project is to establish a working internet connection with a load cell through the NB-IoT technology. The data sent from the load cell should be functionally identical to the data produced if the load cell was offline. Disregarding problems due to a internet service provider, data speeds and losses should not be abnormal. Using the same components, replication of the project should be feasible with the documentation provided in this thesis, assuming software and service providers remain.
 
 The end-goal can be divided into two sub-goals. 
 \begin{itemize}
-	\item Enable internet communication from the micro-controller.
-	\item Enable data transfer from the load cell to the micro-controller.
+	\item Enable internet communication from the microcontroller.
+	\item Enable data transfer from the load cell to the microcontroller.
 \end{itemize}
 
 
@@ -31,4 +29,4 @@ The end-goal can be divided into two sub-goals.
 	\item Scale down expectations and clarify
 \end{itemize}
 \fi
-The final implementation will not be a fully functional product ready to be used. Any extra functionality and improvements upon a internet-enabled load cell will only be done if time remains after the implementation and the completion of the thesis.
+The final implementation will not be a functional product ready to be used. Any extra improvements upon a internet-enabled load cell will only be done if time remains after the implementation and the completion of the thesis.

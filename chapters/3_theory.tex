@@ -1,0 +1,34 @@
+\iffalse
+\begin{itemize}
+  \item Have a specific background or spread it out
+  \item May be necessary to introduce certain things
+\end{itemize}
+\fi
+% TODO: What should this section be about? Introducing the NB-IoT at a more technical level?
+
+
+\section{Components}
+% TODO: Describe components in more detail
+% TODO: Describe all smaller components as well, such as cables?
+\begin{itemize}
+  \item FiPy: a development board that gives access to all major LPWAN technologies. FiPy is developed by PyCom and equipped with an expansion board to enable integration with other components via GPIO pinouts, as well as an LTE-antenna to enable LTE CAT M1 or NB1. MicroPython is enabled on the board, and as such is programmed via the Python programming language (Version 3.5). The available protocols on the FiPy are:
+  \begin{itemize}
+    \item WiFi
+    \item Bluetooth
+    \item LoRa
+    \item SigFox
+    \item Dual LTE-M (LTE CAT M1 / NB1)
+  \end{itemize}
+  
+  \item Tedea Huntleigh - Model 1022: a single point load cell ideally suited for low cost weighing platforms. This specific model has the capacity of 30 kg, which should be more than enough to run tests of data transfer from the load cell via the FiPy.
+
+  \item HX711: a breakout board that amplifies the signal from a load cell so that the data can be read more easily. Several libraries are readily available online, including some MicroPython variants. 
+\end{itemize}
+
+
+
+
+\section{Applications \& Services}
+
+Pybytes
+% TODO: Describe PyBytes
