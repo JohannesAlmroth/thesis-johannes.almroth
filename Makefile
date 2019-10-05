@@ -15,7 +15,7 @@ cycle:
 	pdflatex main
 
 clean:
-	rm -f *.aux *.lof *.log *.lot *.synctex.gz *.toc
+	rm -f *.aux *.lof *.log *.lot *.synctex.gz *.toc *.out
 
 diff.tex:
 	@echo "This command assumes you have checked out the previous version"
