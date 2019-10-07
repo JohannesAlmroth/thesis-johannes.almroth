@@ -20,7 +20,8 @@
   url,        % For typesetting URLs
   listings,   % Code formatting
   hyperref,   % Links in PDF from TOC, refs, etc.
-  lipsum
+  lipsum,
+  wrapfig     % For wrapping figures in text
 }
 \usepackage{changepage}
 \usepackage{float}
@@ -89,7 +90,7 @@
 \renewcommand{\c}[1]{\lstinline[style=std]@#1@}
 
 \lstdefinestyle{std}{
-  language=java,
+  language=python,
   basicstyle=\small\sf\color{black},
   keywordstyle=\small\sf\bfseries,
   numberstyle=\footnotesize\sf\color{black},
@@ -138,8 +139,8 @@
 
 
 \tableofcontents
-%\listoffigures
-%\listoftables
+\listoffigures
+\listoftables
 
 \mainmatter
 

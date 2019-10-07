@@ -1,34 +1,42 @@
 % Should be ~2 pages 
-\iffalse
-\begin{itemize}
-  \item Have a specific background or spread it out
-  \item May be necessary to introduce certain things
-\end{itemize}
-\fi
-% TODO: What should this section be about? Introducing the NB-IoT at a more technical level?
-
-
-\section{Components}
+s
+\section{Components}  
 % TODO: Describe components in more detail
-% TODO: Describe all smaller components as well, such as cables?
 \begin{itemize}
-  \item FiPy: a development board that gives access to all major LPWAN technologies. FiPy is developed by PyCom and equipped with an expansion board to enable integration with other components via GPIO pinouts, as well as an LTE-antenna to enable LTE CAT M1 or NB1. MicroPython is enabled on the board, and as such is programmed via the Python programming language (Version 3.5). The available protocols on the FiPy are:
-  \begin{itemize}
-    \item WiFi
-    \item Bluetooth
-    \item LoRa
-    \item SigFox
-    \item Dual LTE-M (LTE CAT M1 / NB1)
-  \end{itemize}
   
-  \item Tedea Huntleigh - Model 1022: a single point load cell ideally suited for low cost weighing platforms. This specific model has the capacity of 30 kg, which should be more than enough to run tests of data transfer from the load cell via the FiPy.
+  \item \textbf{FiPy:} a microcontroller (not to be confused with the python package of the same name) that gives access to all major LPWAN technologies, originally funded through kickstarter.\cite{fipy-kickstarter} FiPy is developed by the IoT company PyCom\cite{pycom} and equipped with an expansion board to enable integration with other components via GPIO pinouts, as well as an LTE-antenna to enable LTE CAT M1 or NB1.\cite{fipy-docs} The board is programmed via the MicroPython programming language (an implementation of Python 3) which is written in C and optimized to run on a microcontroller.\cite{micropython-github}
 
-  \item HX711: a breakout board that amplifies the signal from a load cell so that the data can be read more easily. Several libraries are readily available online, including some MicroPython variants. 
+
+  \item 
+    \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+    \vspace{-2.5mm}
+    \begin{wrapfigure}{r}{0.4\textwidth}
+      \centering
+      \vspace{-\baselineskip}
+      \includegraphics[scale=0.5]{load-cell-wiring.png}
+      \caption{Wiring schematic\cite{load-cell-manual}}
+      \label{fig:wiring}
+    \end{wrapfigure}
+    \textbf{Tedea Huntleigh - Model 1022:} a single point load cell ideally suited for low cost weighing platforms. This specific model has the capacity of ~30 kg.\cite{load-cell-manual} It is a type of strain gauge load cell which converts the physical load it's exposed to to electrical signals. When a weight is applied, the metal deforms slightly, which changes the internal electrical resistance and therefore affects the output of the voltage.\cite{strain-gauge} To utilize the load cell, the four wires need to be hooked up as according to figure \ref{fig:wiring}.
+    }
+
+
+  \item 
+    \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+    \vspace{-2.5mm}
+    \begin{wrapfigure}{l}{0.4\textwidth}
+      \centering
+      \vspace{-\baselineskip}
+      \includegraphics[scale=0.1]{hx711.png}
+      \caption{HX711\cite{hx711-shop}}
+      \label{fig:hx711}
+    \end{wrapfigure}
+    \textbf{HX711:} a breakout board that amplifies the signal from a load cell so that the data can be read more easily. Since the load cell outputs an analog signal in the form of mV/V, a conversion to a digital format is needed. It's important to note the industry standard of the wire coloring in load cells is not definitive.\cite{load-cell-wiring-standard} If the wires are from the model 1022 are connected in the sockets as figure \ref{fig:hx711} suggests, the load cell will not work correctly. According to figure \ref{fig:hx711} and figure \ref{fig:wiring} we can see that the green and red wire needs to switch places, because of E+ corresponding to Input+ and A+ corresponding to Output+.
+    }
+
 \end{itemize}
-
-
 
 
 \section{Applications \& Services}
-
+\lipsum[2]
 % TODO: Describe PyBytes
