@@ -12,3 +12,5 @@ Load Cell **check model**
 When running into  
 `>>> Can't run conf files, please run only python files`  
 make sure you're "standing" in the file you want to run.
+
+When using the FiPY, keep in mind that not all functions of MicroPython are available. @micropython.
