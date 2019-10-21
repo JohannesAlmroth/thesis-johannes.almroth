@@ -1,17 +1,19 @@
 % Should be 25% of the total paper, i.e. 3-5 pages
 
-Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilometers north of Stockholm. Vetek constructs their own scales and weighing systems, as well as reselling products from other manufacturers.\cite{vetek} 
+% TODO: [Comment] This is "background" more than introduction. 1st paragraph + some more details about your own works is the intro.
 
-Vetek aims to improve their services, and as such are interested in the possible use cases of IoT (Internet of Things) technology, and ultimately see how that can be applied to their own products. In this paper,the term IoT will simply mean ``(a) device(s) connected to the internet''\cite{what_is_iot}. In a pilot project, Vetek wants to see how this connectivity can be implemented in a energy-efficient and effective manner. This would entail investigating factors such as power consumption, range and data rate. NB-IoT (Narrowband-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as wide coverage, low power consumption and low complexity.\cite{NB-overview} Using some form of NB-IoT compatible microcontroller and hooking it up to a basic load cell should provide sufficient testing grounds to see how this new functionality could improve existing products.
+Vetek is a Swedish scale supplier located in Väddö, situated approx. 100 kilometers north of Stockholm. Vetek constructs their own scales and weighing systems, as well as reselling products from other manufacturers.\cite{vetek} Vetek aims to improve their services, and as such are interested in the possible use cases of IoT (Internet of Things) technology, and ultimately see how that can be applied to their own products. In this paper, the term IoT will simply mean ``(a) device(s) connected to the internet''\cite{what_is_iot}. In a pilot project, Vetek wants to see how this connectivity can be implemented in a energy-efficient and effective manner. This would entail investigating factors such as power consumption, range and data rate. 
 
-% TODO: Write about the current NB-IoT situation in Sweden. What does the market look like, what services are available?
-According to Swedish telecom company Telia, they were the first to introduce the NB-IoT technology in Sweden, as well as the Nordic countries overall\cite{telia-nb}. They further claim that their network will be in range for over 99.9\% of Sweden's population, as well as provide a speed of 200 kb/s in more than 95\% of the country.\cite{telia-first} The grand opening of the network was on the 24th of May, and pilot projects were conducted as early as a year before this, in multiple locations across the country, such as Västerås and Lund. Telia currently offers a starter kit  for any actor interested in the technology, with a trial period of 6 months that includes access to Telia's IoT portal and APIs as well as 5 SIM cards, each with a 30MB data cap per month. 
+% TODO: [Comment] What are you going to discuss and why
 
-The only other competing telecom companies in Sweden dealing in NB-IoT is Tele2  who have partnered up with Nokia to deliver a ... 
-%TODO: Maybe even Telenor?
-\\\\
-\textbf{[TODO: How much description of the market is needed?]}
-\\\\
+% Better suited for background
+Narrowband-IoT (NB-IoT), a new and emerging radio technology, encapsulates some principles suitable for this type of endeavor, such as wide coverage, low power consumption and low complexity.\cite{NB-overview} It's a radio access technology standardized by the 3GPP (standardization organization within telecommunications)\cite{3gpp} in 2016, and is a part of the 3GPP's push for IoT technologies alongside LTE-M and EC-GSM-IoT. These are so called low-power wide-area network (LPWAN) technologies that will compete with rivals such as LoRaWAN and Sigfox. Compared to LTE-M and EC-GSM-IoT, NB-IoT has a lower  data rate, no voice capability and limited mobility capability. In return, the power consumption and cost of the devices will be lower, and thus more suitable for simple static sensor applications.\cite{sierra-article}
+
+% Better suited for background
+According to Swedish telecom company Telia, they were the first to introduce the NB-IoT technology in Sweden, as well as the Nordic countries overall\cite{telia-nb}. They further claim that their network will be in range for over 99.9\% of Sweden's population, as well as provide a speed of 200 kb/s in more than 95\% of the country.\cite{telia-first} The grand opening of the network was on the 24th of May, and pilot projects were conducted as early as a year before this, in multiple locations across the country. Telia currently offers a starter kit  for any actor interested in the technology, with a trial period of 6 months that includes access to Telia's IoT portal and APIs as well as 5 SIM cards, each with a 30MB data cap per month. Telia doesn't seem have many competitors when it comes to the Swedish IoT market, though Tele2 have partnered up with Nokia to offer similar services. According to a press release from 2018, they have rolled out both LTE-M and NB-IoT across their networks.\cite{tele2-nokia} Telenor has launched a IoT network in Norway with NB-IoT functionality in 2018, though no mention has been made of when this will be available in Sweden as well.\cite{telenor-iot} The fact that Telia already has partnered up with a multitude of cities and companies give the indication that they have a head start in the market.
+
+
+Using some form of NB-IoT compatible microcontroller and hooking it up to a basic load cell should provide sufficient testing grounds to see how this new functionality could improve existing products.
 
 \section{Purpose and Goals}
 \iffalse
@@ -24,8 +26,11 @@ The only other competing telecom companies in Sweden dealing in NB-IoT is Tele2 
 \end{itemize}
 \fi
 
+% TODO: [Comment] Work on first sentence, documentation isn't that sparse.
+% Another angle can be that the technology isn't that available out of the box in a way that wifi is, mainly in the form of guides and such.
 NB-IoT is a relatively new technology, and as such, implementations and documentations remain sparse.\cite{NB-overview} However, even a small project such as this can serve as a guiding post for future work. The goal of this project is to establish a working internet connection with a load cell through the NB-IoT technology. The data sent from the load cell should be functionally identical to the data produced if the load cell was offline. Disregarding problems due to a internet service provider, data speeds and losses should not be abnormal. Using the same components, replication of the project should be feasible with the documentation provided in this thesis, assuming similar software and service providers remain. 
 
+% TODO: [Comment] How does this relate to purpose and goals? 
 The end-goal can be divided into two sub-goals. 
 \begin{itemize}
 	\item Enable internet communication via NB-IoT from the microcontroller.
@@ -33,20 +38,17 @@ The end-goal can be divided into two sub-goals.
 \end{itemize}
 
 This paper will outline and describe the process from start to finish. Problems and challenges that arise in the implementation will be investigated and analyzed. An agile workflow will be prioritized in the implementation, with small increments of work being added and tested before moving on to the next part. The workflow will flow this rough outline.
+% TODO: [Comment] How does this relate to purpose and goals? 
 \begin{enumerate}
-	\item Enable communication from the microcontroller via another common protocol, such as WiFi.
+	\item Enable communication from the microcontroller via another common protocol, such as WiFi. %TODO: [Comment] Explain why this is the case
 	\item Enable the reading of data from the load cell via the microcontroller.
 	\item Upload the data to a suitable online platform.
 	\item Enable communications from the microcontroller via NB-IoT.
 \end{enumerate}
 The reason for enabling communications via WiFi is to ensure a functioning channel via a more common and well-documented protocol that's easier to setup. Once this is functional at the same time as the data upload of the load cell data, the move to NB-IoT can be done. This setup is due to the aforementioned agile workflow.
+	
 
-
-The final implementation will be evaluated by measuring uptime $\lor$ energy consumption $\lor$ packet transmission time.
-\\\\
-\textbf{[TODO: Finalize what parameter(s) should be used in an evaluation]}
-\\\\	
-
+% TODO: [Comment] Change the heading? 
 \section{Delimitations}
 \iffalse
 \begin{itemize}
@@ -57,6 +59,9 @@ The final implementation will be evaluated by measuring uptime $\lor$ energy con
 \fi
 The end goal of the paper is to document and outline the steps needed to implement a functioning data upload from a load cell to the internet via NB-IoT. The final implementation will not be a functional product ready to be taken into commercial use. Any extra improvements upon a NB-IoT enabled load cell will only be done if time remains after the implementation and the completion of the thesis. The reason for this is due to a limited time budget, since this project is done within the framework for a bachelor's thesis.
 
+% TODO: [Comment] Does this part makes sense based on material in previous paragraphs? Maybe better suited for later?
 When starting this project, several factors motivated the choice for hardware (which will be described in greater detail in the following chapter). Since existing work on NB-IoT at Uppsala university has been done on the microcontroller FiPy, and the available expertise would make troubleshooting simpler, a FiPy was chosen for this project as well. Furthermore, since the Computer Communications group at Uppsala University have an ongoing contract(\textbf{wording?}) to use Telia's NB network, the choice for which tele-carrier to use was also quite simple. The load cell, a Tedea Huntleigh - Model 1022 was provided by Vetek, as it was deemed a simple and basic model which would be suitable for this kind of pilot project. Since the output of a load cell is measured in mV/V\cite{load-cell-spec}, some form of mediator is needed between the microcontroller and the load cell. A similar implementation made at KTH \cite{hospital} used a load cell amplifier, HX711, to convert the data to a digital format. After some research online, no alternatives were cheap or simple enough to warrant a different purchase. The readily available documentation and tutorials were also a compelling argument for using the HX711. 
 
-% TODO: Describe the choice of services such as Pybytes/Thingspeak
+% TODO: [Comment] I think it would be helpful for the introduction to focus on the two main parts 1. load cell -> microcontroller (and amplifier & ADC), as well as 2. microcontroller -> cloud service (nb iot / mobile network) // Why might it be useful to have wireless scales that send data to the cloud.
+
+% TODO: [Comment] Maybe also data on cloud -> useful application (not main goal for you)
