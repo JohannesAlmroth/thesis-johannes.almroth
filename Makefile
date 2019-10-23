@@ -2,6 +2,9 @@ main:
 	pdflatex main
 	make clean
 
+fake_data:
+	python3 scripts/lib/data_generator.py
+
 spec:
 	markdown-pdf spec.md
 

@@ -14,3 +14,4 @@ When running into
 make sure you're "standing" in the file you want to run.
 
 When using the FiPY, keep in mind that not all functions of MicroPython are available. @micropython.
+When modifying code via pybytes/flash, things can get real funky real quick. Indentation doesn't really work in the online code editor, which really funks up the python interpreter.
