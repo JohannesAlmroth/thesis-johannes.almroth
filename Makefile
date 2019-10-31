@@ -2,6 +2,10 @@ main:
 	pdflatex main
 	make clean
 
+fake_reading:
+	make fake_data
+	python3 scripts/lib/data_reader.py
+
 fake_data:
 	python3 scripts/lib/data_generator.py
 
