@@ -23,7 +23,9 @@ reading_delay = 1
 def read_data(f):
 
 	short_term_buffer = FIFO(maxlen = 2)
-	stream = reading(f)
+	# stream can be set to whatever stream that will yield the next available data
+	# whether it be from a real-time polling function or a 
+	stream = read_file(f)
 
 	while True:
 		data = float(next(stream).strip())  # Convert from String to float
@@ -45,7 +47,7 @@ def decrease_delay():
 		reading_delay -= READING_DELAY_INC
 
 
-def reading(f):
+def read_file(f):
 	for data in open(f, 'r'):
 		yield data
 
@@ -90,7 +92,6 @@ def modify_reading_delay(buffer):
 	'''
 	Purpose of this function is to modify reading_delay depending on the delta produced when comparing the values in the short term buffer.
 	'''
-	print(buffer)
 	crude_list = rinse_extremes(buffer)
 	delta = total_delta(crude_list)
 	if abs(delta) > DELTA_THRESHOLD:

@@ -50,6 +50,31 @@ To sum up the important design choices when considering how often the sensor sho
 \section{Sensor Failure}
 
 \subsection{Behaviors}
-In this paper we define
+In the previous chapter we defined a sensor failure as a state where the sensors measures invalid data for such a period of time that the sensor isn't deemed functional. Functional can be different things for different applications, such as that one successful reading an hour is enough for one case, while one successful read per second might not even be enough for another. The question of how to determine successful readings versus unsuccessful ones are beyond the scope of this paper and varies greatly from sensor to sensor. We will aim to implement one way of handling the device state when these faulty readings do occur.
+
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{half_faulty_data.png}
+    \caption{Graph with some faulty data}
+    \label{fig:half_faulty}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{faulty_data.png}
+    \caption{Graph with only faulty data}
+    \label{fig:faulty}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{some_faulty.png}
+    \caption{Graph with two intervals of faulty data}
+    \label{fig:some_faulty}
+	\end{subfigure}
+\end{figure}
+
+In fig \ref{fig:half_faulty}, the sensor first reads faulty data but then recovers  and starts producing valid data halfway through. In fig \ref{fig:faulty} all the data produced is faulty. In fig \ref{fig:some_faulty} there is one interval of faulty data followed by recovery, and then it repeats this pattern one more time.
+
+\subsection{Implementation}
 
 \section{Sensor Disconnect}
