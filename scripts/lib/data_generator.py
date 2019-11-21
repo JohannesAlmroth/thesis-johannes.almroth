@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 # from uos import urandom
 from random import random, uniform, choice, randint
 
+def create_disconnect_data(filename):
+	data = []
+	data.extend([100 for i in range(0, 25)])
+	data.extend([i for i in range(100, 60, -2)])
+	data.extend([60 for i in range(0, 25)])
+	data.extend([0 for i in range(0, 25)])
+
+	write_to_file(data, filename)
+
 def create_half_faulty_data(filename):
 	data = []
 	data.extend([randint(100, 200) for i in range(0, 50)])
@@ -19,21 +28,24 @@ def create_faulty_data(filename):
 
 def create_some_faulty_data(filename):
 	data = []
-	data.extend([randint(100, 200) for i in range(0, 25)])
-	data.extend([i for i in range(100, 75, -1)])
-	data.extend([randint(100, 200) for i in range(0, 25)])
-	data.extend([i for i in range(50, 25, -1)])
+	data.extend([50 for i in range(0, 25)])
+	data.extend([randint(100, 200) for i in range(0, 10)])
+	data.extend([50 for i in range(0, 25)])
+	data.extend([randint(100, 200) for i in range(0, 10)])
+	data.extend([50 for i in range(0, 25)])
+	data.extend([randint(100, 200) for i in range(0, 10)])
+	data.extend([50 for i in range(0, 25)])
 
 	write_to_file(data, filename)
 
 def create_plateu_data(filename):
-	PLATEU_LENGTH = 5
+	PLATEU_LENGTH = 25
 	data = []
 	data.extend([100 for i in range(0, PLATEU_LENGTH)])
-	data.extend([75 for i in range(0, PLATEU_LENGTH)])
-	data.extend([50 for i in range(0, PLATEU_LENGTH)])
-	data.extend([25 for i in range(0, PLATEU_LENGTH)])
-	data.extend([0 for i in range(0, PLATEU_LENGTH)])
+	data.extend([i for i in range(100, 60, -2)])
+	data.extend([60 for i in range(0, PLATEU_LENGTH)])
+	data.extend([i for i in range(60, 20, -2)])
+	data.extend([20 for i in range(0, PLATEU_LENGTH)])
 
 	write_to_file(data, filename)
 
@@ -111,6 +123,7 @@ if __name__ == "__main__":
 	from threading import Thread
 
 	path = getcwd() + '/output/'
+
 	# plateu_file = path + 'plateu_data.txt'
 	# create_plateu_data(plateu_file)
 	# read_file(plateu_file)
@@ -127,6 +140,10 @@ if __name__ == "__main__":
 	# create_faulty_data(faulty_file)
 	# read_file(faulty_file)
 
-	some_faulty_file  = path + 'some_faulty_data_txt'
-	create_some_faulty_data(some_faulty_file)
-	read_file(some_faulty_file)
+	# some_faulty_file  = path + 'some_faulty_data.txt'
+	# create_some_faulty_data(some_faulty_file)
+	# read_file(some_faulty_file)
+
+	disconnect_file = path + 'disconnect_data.txt'
+	create_disconnect_data(disconnect_file)
+	read_file(disconnect_file)

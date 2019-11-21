@@ -3,7 +3,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[british]{babel}
 \usepackage{graphicx}
-\usepackage{subcaption}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{libertine}
 \renewcommand*\ttdefault{cmtt}
@@ -26,6 +25,7 @@
 }
 \usepackage{changepage}
 \usepackage{float}
+\usepackage[list=true]{subcaption}
 
 \usepackage[twoside,labelfont=sf]{caption}
 
@@ -141,7 +141,7 @@
 
 \tableofcontents
 \listoffigures
-\listoftables
+% \listoftables
 
 \mainmatter
 
@@ -150,6 +150,9 @@
 
 \chapter{Background}
 \input{chapters/3_background}
+
+\chapter{Requirements}
+\input{chapters/3.5_requirements.tex}
 
 \chapter{Design \& Implementation}
 \input{chapters/4_methodology}
