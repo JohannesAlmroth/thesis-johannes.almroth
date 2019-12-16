@@ -2,6 +2,12 @@ main:
 	pdflatex main
 	make clean
 
+tests: FORCE
+	python3 tests/tests.py
+
+clean_tests:
+	rm -rf tests/__pycache__
+
 fake_reading:
 	make fake_data
 	python3 scripts/lib/data_reader.py
@@ -35,3 +41,4 @@ diff.tex:
 diff: diff.tex
 	pdflatex diff.tex
 
+FORCE:
