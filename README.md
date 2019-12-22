@@ -22,11 +22,16 @@ Responsible for:
 
 #### The logger class
 Responsible for:
-* Logging the actions of both the transmission and reader class
+* Logging the actions of the reader class
 * Displaying logs through visual means
-* Comparing action logs with actual data logs
 
+Different events for a logger:
++ Read data
++ Transmitted data
++ Changed internal value
++ Failure detection actions
 
+Logger will timestamp every event
 
 ## The hardware
 FiPy

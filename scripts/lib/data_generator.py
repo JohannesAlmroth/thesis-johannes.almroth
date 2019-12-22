@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 # pylint: disable=undefined-variable
 # from uos import urandom
 from random import random, uniform, choice, randint
+from numpy import arange
+
+def add_linear_data(data_list, nr_of_data_points, start_value, end_value):
+	inc = (end_value - start_value) / nr_of_data_points
+	data_list.extend([i for i in arange(start_value, end_value, inc)])
+	return data_list
+
 
 def create_disconnect_data(filename):
 	data = []
@@ -144,6 +151,6 @@ if __name__ == "__main__":
 	# create_some_faulty_data(some_faulty_file)
 	# read_file(some_faulty_file)
 
-	disconnect_file = path + 'disconnect_data.txt'
-	create_disconnect_data(disconnect_file)
-	read_file(disconnect_file)
+	# disconnect_file = path + 'disconnect_data.txt'
+	# create_disconnect_data(disconnect_file)
+	# read_file(disconnect_file)

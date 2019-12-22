@@ -1,19 +1,23 @@
+python = python3
+test = -m unittest
+lib = scripts/lib/reader.py
+
 main:
 	pdflatex main
 	make clean
 
 tests: FORCE
-	python3 tests/tests.py
+	$(python) $(test) scripts/tests/reader_test.py -v
 
 clean_tests:
 	rm -rf tests/__pycache__
 
 fake_reading:
 	make fake_data
-	python3 scripts/lib/data_reader.py
+	$(python) scripts/lib/data_reader.py
 
 fake_data:
-	python3 scripts/lib/data_generator.py
+	$(python) scripts/lib/data_generator.py
 
 spec:
 	markdown-pdf spec.md
