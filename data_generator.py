@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 # pylint: disable=import-error
 # pylint: disable=undefined-variable
 # from uos import urandom
@@ -110,19 +110,19 @@ def read_file(filename):
 	fh.close()
 
 
-def create_graph(xdata):
-	with plt.xkcd():
-		fig = plt.figure()
-		ax = fig.add_axes((0.1, 0.2, 0.8, 0.7))
-		ax.spines['right'].set_color('none')
-		ax.spines['top'].set_color('none')
+# def create_graph(xdata):
+# 	with plt.xkcd():
+# 		fig = plt.figure()
+# 		ax = fig.add_axes((0.1, 0.2, 0.8, 0.7))
+# 		ax.spines['right'].set_color('none')
+# 		ax.spines['top'].set_color('none')
 
-		ax.plot(xdata)
-		ax.set_ylim(ymin=0) # To start the y-axis from 0
+# 		ax.plot(xdata)
+# 		ax.set_ylim(ymin=0) # To start the y-axis from 0
 
-		ax.set_xlabel('y-axis')
-		ax.set_ylabel('x-axis')
-		plt.show()
+# 		ax.set_xlabel('y-axis')
+# 		ax.set_ylabel('x-axis')
+# 		plt.show()
 
 
 if __name__ == "__main__":
