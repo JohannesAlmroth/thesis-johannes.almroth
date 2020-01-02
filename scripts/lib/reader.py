@@ -19,6 +19,8 @@ class Reader:
 	polling_delay_max = 3,
 	polling_delay_min = 0.5,
 	polling_delay_inc = 0.5
+
+	
 	):
 		self.poller = poller
 		self.transmitter = transmitter
@@ -69,8 +71,19 @@ class Reader:
 			raise ValueError("Distance between initial polling delay and maximum polling delay must be divisible by polling delay increment")
 
 	def run(self, iterations = 1):
-		for _ in range(0, iterations):
+		for _ in range(iterations):
 			self.iterations += 1
+			value = self.poller()
+			if(self.verify_data(value)):
+				self.adjust_reading_rate(value)
+			
+	def verify_data(self, value):
+		if ((value <= self.MAX_UNIT_VALUE) and (value >= self.MIN_UNIT_VALUE)):
+			return True
+		return False
+	
+	def adjust_reading_rate(self, value):
+		return
 
 
 

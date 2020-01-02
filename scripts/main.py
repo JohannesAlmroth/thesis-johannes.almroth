@@ -1,2 +1,2 @@
-from test_reader import *
+from test_read_rate import *
 unittest.main()
