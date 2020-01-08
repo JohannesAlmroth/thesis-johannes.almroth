@@ -30,24 +30,9 @@ class TestReadRate(unittest.TestCase):
         except:
             self.fail()
 
-    def test_polling_delay_stays_the_same(self):
-        # Arrange
-        l = [1 for i in range(10)]
-        x = iter(l)
-        r = re.Reader(poller = lambda: next(x))
-        delay = r.polling_delay
-
-        # Act
-        for _ in range(10):
-            r.run()
-
-            # Assert
-            self.assertEqual(r.polling_delay, delay)
-        self.assertTrue(r.iterations == 10)
-
     def test_polling_delay_decreases(self):
         # Arrange
-        l = [1 for i in range(20)]
+        l = [i for i in range(0, 100, 5)]
         p = iter(l)
         r = re.Reader(poller=lambda: next(p))
         init_delay = r.polling_delay
@@ -77,9 +62,12 @@ class TestReadRate(unittest.TestCase):
     def test_polling_delay_fluctuates(self):
         # Arrange
         l = [i for i in range(0, 100, 5)]
+        l.extend([100 for i in range(20)])
         l.extend([i for i in range(100, 0, -5)])
-        l.extend([i for i in range(0, 100, 5)])
-        r = re.Reader()
+        l.extend([0 for i in range(100)])
+        p = iter(l)
+        print(p)
+        r = re.Reader(poller=lambda:next(p))
         prev_delay = r.polling_delay
 
         # Act / Assert
@@ -94,12 +82,13 @@ class TestReadRate(unittest.TestCase):
 
         self.assertTrue(r.iterations == 60)
 
-    def false_values_dont_affect(self):
+    def test_false_values_dont_affect(self):
         l = [75 for i in range(10)]
         l.extend([25 for i in range(10)])
         l.extend([100 for i in range(10)])
         l.extend([150 for i in range(10)])
-        r = re.Reader(unit_value_min=50, unit_value_max=100)
+        p = iter(l)
+        r = re.Reader(poller=lambda:next(p), unit_value_min=50, unit_value_max=100)
 
         # Act / Assert
         r.run(10)

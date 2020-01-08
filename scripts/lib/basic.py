@@ -74,12 +74,3 @@ def connect(list_of_logons):
                 print('WLAN connection succeeded!')
                 break
 
-class FIFO:
-    def __init__(self, maxlen):
-        self.maxlen = maxlen
-        self.queue = []
-    
-    def add(self, value):
-        self.queue.append(value)
-        if len(self.queue) > self.maxlen:
-            self.queue = self.queue[-self.maxlen:]
