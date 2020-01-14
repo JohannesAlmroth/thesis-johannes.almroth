@@ -4,11 +4,11 @@
 import unittest
 import reader as re
 
-class TestReadRate(unittest.TestCase):
+class TestPollRate(unittest.TestCase):
 
     def test_run_function_works(self):
         # Arrange
-        r = re.Reader()
+        r = re.Reader(debug=True)
 
         # Act
         r.run(10)
@@ -66,7 +66,6 @@ class TestReadRate(unittest.TestCase):
         l.extend([i for i in range(100, 0, -5)])
         l.extend([0 for i in range(100)])
         p = iter(l)
-        print(p)
         r = re.Reader(poller=lambda:next(p))
         prev_delay = r.polling_delay
 

@@ -1,12 +1,13 @@
 # pylint: disable=undefined-variable
 # pylint: disable=import-error
-RUN_TESTS = False
-RUN_PROGRAM = True
+RUN_TESTS = True
+RUN_PROGRAM = False
 
-t = pybytes.send_signal
+# t = pybytes.send_signal
 
 if RUN_TESTS:
-	from test_read_rate import *
+	from test_poll_rate import *
+	from test_fail_check import *
 	unittest.main()
 if RUN_PROGRAM:
 	import reader as re

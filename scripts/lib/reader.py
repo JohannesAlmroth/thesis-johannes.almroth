@@ -88,18 +88,18 @@ class Reader:
 
 				if self.DEBUG: print("Queue is", self.data_buffer.queue)
 				
-				self.adjust_reading_rate()
+				self.adjust_polling_rate()
 				self.transmitter(1, value)
-			
+
 	def verify_data(self, value):
 		return (value <= self.MAX_UNIT_VALUE) and (value >= self.MIN_UNIT_VALUE)
 	
-	def adjust_reading_rate(self):
+	def adjust_polling_rate(self):
 		delta = self.current_delta()
 		if abs(delta) > self.DELTA_THRESHOLD:
-			self.decrease_delay()
+			self.decrease_polling_delay()
 		else:
-			self.increase_delay()
+			self.increase_polling_delay()
 
 	def current_delta(self):
 		if self.DEBUG: print("Queue is", self.data_buffer.queue)
@@ -109,24 +109,28 @@ class Reader:
 			new_delta = prev - x
 			total_delta += new_delta
 			prev = x
+
 		if self.DEBUG: print("Current delta is", total_delta)
+		
 		return total_delta
 	
-	def increase_delay(self):
+	def increase_polling_delay(self):
 		if self.polling_delay < self.POLLING_DELAY_MAX:
 			new_polling_delay = self.polling_delay + self.POLLING_DELAY_INC
-			if self.DEBUG:
-				print("Increased the delay from ", self.polling_delay, "to", new_polling_delay)
+			
+			if self.DEBUG: print("Increased the delay from ", self.polling_delay, "to", new_polling_delay)
+			
 			self.polling_delay = new_polling_delay 
 		else: 
 			if self.DEBUG: print("Already at max polling delay")
 
 
-	def decrease_delay(self):
+	def decrease_polling_delay(self):
 		if self.polling_delay > self.POLLING_DELAY_MIN:
 			new_polling_delay = self.polling_delay - self.POLLING_DELAY_INC
-			if self.DEBUG:
-				print("Decreased the delay from ", self.polling_delay, "to", new_polling_delay)
+			
+			if self.DEBUG: print("Decreased the delay from ", self.polling_delay, "to", new_polling_delay)
+			
 			self.polling_delay = new_polling_delay
 		else: 
 			if self.DEBUG: print("Already at min polling delay")
