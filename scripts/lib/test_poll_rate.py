@@ -8,7 +8,7 @@ class TestPollRate(unittest.TestCase):
 
     def test_run_function_works(self):
         # Arrange
-        r = re.Reader(debug=True)
+        r = re.Reader()
 
         # Act
         r.run(10)

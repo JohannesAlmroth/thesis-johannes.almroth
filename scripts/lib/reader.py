@@ -89,7 +89,7 @@ class Reader:
 				if self.DEBUG: print("Queue is", self.data_buffer.queue)
 				
 				self.adjust_polling_rate()
-				self.transmitter(1, value)
+				self.transmitter(value)
 
 	def verify_data(self, value):
 		return (value <= self.MAX_UNIT_VALUE) and (value >= self.MIN_UNIT_VALUE)
