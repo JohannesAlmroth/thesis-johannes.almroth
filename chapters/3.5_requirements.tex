@@ -17,7 +17,7 @@
 % - Sensor failure
 % - Sensor disconnect
 
-In this section we will discuss some the software requirements imposed on the IoT-enabled scale device that will be implemented, and what behavior we wish to see from the device in the case of different scenarios. These areas are: data polling rate, data transmission rate, sensor failure as well as sensor disconnect. These areas were chosen because of their relative simple nature, as well as their relevance to other similar devices. The purpose of these requirements is to emulate the constraints placed on devices in the real world, specifically an all-purpose IoT-scale that Vetek could use in a pilot project for evaluation and future iterations. 
+In this section we will discuss some the software requirements imposed on the IoT-enabled scale device that will be implemented, and what behavior we wish to see from the device in the case of different scenarios. These areas are: data polling rate, sensor failure as well as sensor disconnect. These areas were chosen because of their relative simple nature, as well as their relevance to other similar devices. The purpose of these requirements is to emulate the constraints placed on devices in the real world, specifically an all-purpose IoT-scale that Vetek could use in a pilot project for evaluation and future iterations. 
 
 The requirements for the hardware aspect of this device is simply functionality. Any additional requirements in terms of energy consumption, sizing, etc. would be too vast for the scope of this paper. 
 
@@ -43,9 +43,6 @@ In this paper, we want the device to change its polling rate depending on the da
 In figure \ref{sub@fig:plateu} we see the sensor outputting stable data around a fixed value, to then experiencing a decrease, two times. We want the readings to increase during the data changes, and decrease during the stable plateaus.
 
 In figure \ref{sub@fig:spikes} we see the sensor outputting some data values with sudden spikes in them. For the sake of simplicity, we will assume that our scale has the maximum capacity of 100 kg, and thus can easily discern that any value above this is a false reading. In other contexts, false readings might be harder to detect and handle.
-
-\section{Data Transmission Rate}
-The transmission of the data is in most cases the operation that consumes the most energy for a lot of devices. The energy amount depends on the hardware and protocol being used, which in turn may affect if a device is programmed to send updates once every minute, or once every day. 
 
 \section{Sensor Failure}
 In this paper, we define sensor failure as a sensor giving too many unreliable or false data values to be considered functional. The goal of identifying such a state in an IoT device is to prevent unstable data from being interpreted as valid, which in turn can save the end user from unwanted consequences. Depending on the longevity and purpose of the device, the threshold of when to declare a sensor as failing may differ, especially as this state can be quite fluid. A functional sensor means different things for different devices and applications. A simple way might be to conclude that if x\% of data is considered invalid during the last 24hrs, an alarm should be raised to the device administrator. Complications arise when failures need to be reported quickly, or estimated more thoroughly. It's also possible that the sensor can be temporarily unreliable due to external circumstances, and given enough time, these circumstances might pass. On one extreme you can have a device that reports failures too frequently and bogs down whatever dashboard is handling its status report. On the other, you can have a device taking too long to determine a sensor failure so that false data is believed to be valid in the meantime.
@@ -79,7 +76,7 @@ In figure \ref{sub@fig:no_recover} the sensor doesn't recover from reading inval
 In figure \ref{sub@fig:too_much_invalid} the sensor does recover, but still outputs enough invalid data that an error should be raised. 
 
 
-\subsection{Sensor Disconnect}
+\section{Sensor Disconnect}
 We define a sensor disconnect as when no credible data is being produced at all. If the sensor doesn't recover, immediate maintenance is needed for any continued functionality. In this device we know that a sensor disconnect results in the value 0.0 being returned at every poll by the microcontroller to the sensor. While this might be a valid read in some scenarios, in a real world application we would probably never get such a stable value at exactly 0.0. Rather, it would fuzz around at maybe 1.5\~0.0. Disregarding this, we can also know that sensor has disconnect if the data values drop to 0.0 at a too quick pace to be a real-world measurement. 
 
 The requirements on this device states that it should raise a disconnect error if the sensor doesn't recover within a given timeframe.

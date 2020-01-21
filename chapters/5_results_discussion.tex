@@ -13,14 +13,16 @@ The device also fulfilled the software behavior requirements imposed to emulate 
 
 \section{Discussion}
 %Interpretations: what do the results mean?
-Despite hardships and complications when implementing the hardware, the results suggest that building and programming an NB-IoT enabled device connected to a load cell is possible. The necessary hardware components are neither too unavailable nor incompatible enough to hinder, at the very least, a small scale implementation. 
+Despite hardships and complications when implementing the hardware, the results suggest that building and programming an NB-IoT enabled device connected to a load cell is possible with fairly simple consumer available hardware devices. It is a reasonable assumption that the hardware hindrances encountered in this paper can be bypassed with adequate planning and experience in assembling electric hardware.
 
 %Implications: why do the results matter?
 These results show a small starting post of implementing a IoT device using a load cell as its sensor. With the rise of 5G and IoT platform services there exists a real commercial interest to enable more and more actors to innovate and create products for consumers and companies alike. This project can serve as a starting point for what basic needs and behaviors that need to be considered when planning and designing such a device.	
 
+\subsection{Limitations}
 %Limitations: what can’t the results tell us?
 %% Mass production
+This project was done on the smallest scale possible, and extensive research in multiple different areas need to be conducted to even get an IoT enabled scale close to being produced for functional use, commercial or private.
 %% Variance for customer
+Furthermore, these results can't account for wether the software implementation was close to emulating the desired behavior of a device from a practical standpoint, since no potential end-users were involved in the requirement specification.
 %% Real life environments
-
-%Recommendations: what practical actions or scientific studies should follow?
+Since the testing was only done indoors in a clean and controlled environment, unknown variables present in the real world could very well produce a multitude of challenges that change the way that the device works. Another interesting angle is how different locations would interact with the connection to the cellular network it relies on for communication. The NB-IoT technology makes huge promises, but at the end of the day it is up to the local telecom company to fulfill the underlying conditions that make those claims possible, which would be Telia in our case.
