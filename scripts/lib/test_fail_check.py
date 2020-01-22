@@ -12,27 +12,27 @@ class TestFailTracker(unittest.TestCase):
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
 	
-	def test_grace_period_1(self):
-		ft = f.Fail_tracker()
+	def test_grace_period_prevents_strikes(self):
+		ft = f.Fail_tracker(grace_period=1)
 		ft.strike()
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
 
-	def test_grace_period_2(self):
-		ft = f.Fail_tracker(grace_period=0.1)
+	def test_grace_period_start_allowing_strikes_again(self):
+		ft = f.Fail_tracker(grace_period=0.5)
 		ft.strike()
-		sleep(0.2)
+		sleep(1)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 2)
 
-	def test_cooldown_1(self):
+	def test_cooldown_removes_strikes(self):
 		ft = f.Fail_tracker(grace_period=0.1, cooldown=0.1)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
 		sleep(0.3)
 		self.assertTrue(ft.strike_count == 0)
 
-	def test_cooldown_2(self):
+	def test_cooldown_allows_strikes(self):
 		ft = f.Fail_tracker(grace_period=0.1, cooldown=0.1)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
@@ -40,7 +40,7 @@ class TestFailTracker(unittest.TestCase):
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
 
-	def test_cooldown_3(self):
+	def test_cooldown_allows_fluctuating_strikes(self):
 		ft = f.Fail_tracker(grace_period=0.1, cooldown=0.5)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
@@ -50,7 +50,7 @@ class TestFailTracker(unittest.TestCase):
 		sleep(0.5)
 		self.assertTrue(ft.strike_count == 1)
 
-	def test_max_strikes(self):
+	def test_max_strikes_error_assertion(self):
 		ft = f.Fail_tracker(grace_period=0.1, cooldown=2)
 		for i in range(5):
 			ft.strike()
