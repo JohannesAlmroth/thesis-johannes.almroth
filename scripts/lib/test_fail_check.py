@@ -4,6 +4,7 @@
 import unittest
 import fail_tracker as f
 from utime import sleep
+import _thread
 
 class TestFailTracker(unittest.TestCase):
 
@@ -41,22 +42,24 @@ class TestFailTracker(unittest.TestCase):
 		self.assertTrue(ft.strike_count == 1)
 
 	def test_cooldown_allows_fluctuating_strikes(self):
-		ft = f.Fail_tracker(grace_period=0.1, cooldown=0.5)
+		ft = f.Fail_tracker(grace_period=0.1, cooldown=0.5, debug=True)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 1)
-		sleep(0.1)
+		sleep(0.2)
 		ft.strike()
 		self.assertTrue(ft.strike_count == 2)
-		sleep(0.5)
+		sleep(3)
+		print("You're too slow")
 		self.assertTrue(ft.strike_count == 1)
 
 	def test_max_strikes_error_assertion(self):
-		ft = f.Fail_tracker(grace_period=0.1, cooldown=2)
-		for i in range(5):
-			ft.strike()
-			self.assertTrue(ft.strike_count == (i + 1))
-		with self.assertRaises(FailureRateError):
-			ft.strike()
+		ft = f.Fail_tracker(max_allowed_strikes=10, grace_period=0.1, cooldown=1)
+		with self.assertRaises(f.MaxStrikesError):
+			for i in range(11):
+				sleep(0.2)
+				ft.strike()
+
+
 
 
 if __name__ == '__main__':

@@ -1,6 +1,9 @@
 from utime import sleep
 import _thread
 
+class MaxStrikesError(Exception):
+	pass
+
 class Fail_tracker:
 	def __init__(self,
 	grace_period = 1,
@@ -15,12 +18,17 @@ class Fail_tracker:
 		self.DEBUG = debug
 
 		self.grace_period_is_active = False
-		self.cooldown_is_active_ = False
+		self.cooldown_is_active = False
+		self.cooldown_id = None
 
 	def strike(self):
 		if(self.grace_period_is_active == False):
+			if(self.strike_count >= self.MAX_ALLOWED_STRIKES): raise MaxStrikesError
+			
 			self.grace_period_is_active = True
-			self.strike_count = self.strike_count + 1
+			self.cooldown_is_active = False
+			self.strike_count += 1
+			
 			_thread.start_new_thread(self.grace_period_timer, (1,))
 
 		if(self.DEBUG): print("strike_count is now", self.strike_count)
@@ -32,8 +40,17 @@ class Fail_tracker:
 		if(self.DEBUG): print("Exiting grace period")
 
 		self.grace_period_is_active = False
+		self.cooldown_timer()
 
 	def cooldown_timer(self):
-		sleep(self.GRACE_PERIOD)
+		self.cooldown_id = _thread.get_ident()
+		self.cooldown_is_active = True
+		sleep(self.COOLDOWN)
+		
+		if(self.cooldown_is_active and 
+		not self.grace_period_is_active and
+		self.cooldown_id == _thread.get_ident()):
 
-
+			self.strike_count -= 1
+			if(self.DEBUG): print("Cooldown successful")
+			self.cooldown_is_active = False
