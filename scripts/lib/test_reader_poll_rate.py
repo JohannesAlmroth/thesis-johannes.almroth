@@ -4,7 +4,7 @@
 import unittest
 import reader as re
 
-class TestPollRate(unittest.TestCase):
+class TestReaderPollRate(unittest.TestCase):
 
     def test_run_function_works(self):
         # Arrange

@@ -6,8 +6,8 @@ RUN_PROGRAM = False
 # t = pybytes.send_signal
 
 if RUN_TESTS:
-	from test_poll_rate import *
-	from test_fail_check import *
+	from test_reader_poll_rate import *
+	from test_error_tracker import *
 	unittest.main()
 if RUN_PROGRAM:
 	import reader as re

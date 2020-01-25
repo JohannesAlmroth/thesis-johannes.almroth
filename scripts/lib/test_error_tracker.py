@@ -42,7 +42,7 @@ class TestErrorTracker(unittest.TestCase):
 		self.assertTrue(ft.error_count == 1)
 
 	def test_cooldown_allows_fluctuating_strikes(self):
-		ft = f.Error_tracker(grace_period=0.1, cooldown=0.5, debug=True)
+		ft = f.Error_tracker(grace_period=0.1, cooldown=0.5)
 		ft.error_occurred()
 		self.assertTrue(ft.error_count == 1)
 		sleep(0.2)
