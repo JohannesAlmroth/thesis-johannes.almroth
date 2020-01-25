@@ -73,27 +73,31 @@ During the first half of the project a faulty load cell was being used, which re
 
 
 \section{Software Implementation}
-The FiPy code runs on MicroPython, an implementation of Python 3 optimized for microcontrollers. MicroPython only executes two files on its system's root folder, the \lstinline{boot.py} and the \lstinline{main.py} files. Any remaining code must be placed in the \lstinline{lib} folder. The \lstinline{bootp.py} runs first, and is intended to contain low-level code that is meant to configure the hardware. The \lstinline{main.py} file contains the main program loop, and imports auxiliary files from the \lstinline{lib} folder.
+The FiPy code runs on MicroPython, an implementation of Python 3 optimized for microcontrollers. MicroPython only executes two files on its system's root folder, the \lstinline{boot.py} and the \lstinline{main.py} files. Any remaining code must be placed in the \lstinline{/lib/} folder. The \lstinline{bootp.py} runs first, and is intended to contain low-level code that is meant to configure the hardware. The \lstinline{main.py} file contains the main program loop, and imports auxiliary files from the \lstinline{/lib/} folder.
+The two files used in the \lstinline{/lib/} folder are \lstinline{reader.py} and \lstinline{error\_tracker.py}. A test file has been written for each module, to ensure some basic functionality. All python classes and their respective tests can be found in the appendix. 
 
 \subsection{reader.py}
 The \lstinline{reader.py} file contains the \lstinline{Reader} class, which is responsible for processing the data polled from the load cell and passing it on to being transmitted. To instantiate a functional \lstinline{reader} object, it needs to be passed a poller function as well as a transmitter function. The purpose of having these functions passed to the instance of the class instead of being hardcoded into the class is to follow the separation of concern design principle.\cite{sep-concern} The poller function should accept no argument and is expected to return the current data value produced by the load cell when called. The transmitter function in turn should accept the data value to be transmitted.
 
 The main method of the \lstinline{reader} instance is the \lstinline{run()} method. When called, the \lstinline{run()} method performs a cycle consisting of data polling, a check for false values, adjustment of the polling rate as well as a possible transmission. 
 
-\subsubsection{Failure Check}
-The polled data value is subsequently checked for validity in the form of out-of-bounds values or extreme delta changes. A separate class called \lstinline{Fail_tracker} monitors the interval and frequency of these occurrences, and the purpose of the class is to raise an error when the error rate is deemed too high, and an administrator needs to be notified. This will result in an error message being transmitted. The internal workings of the \lstinline{Fail_tracker} will be explained in a separate section.
+\subsubsection{Error Check}
+The polled data value is subsequently checked for validity in the form of out-of-bounds values or extreme delta changes. A separate class called \lstinline{Error\_tracker} monitors the interval and frequency of these occurrences, and the purpose of the class is to raise an exception when the error rate is deemed too high, and some form of remedial action needs to be taken. The internal workings of the \lstinline{Error\_tracker} will be explained in a separate section.
 
 \subsubsection{Adjustment of polling rate}
-If the value is deemed valid, it is added to a FIFO (First-in, First-out) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased.
+If the value is deemed valid, it is added to a FIFO (First-in, First-out) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased. When we say total delta value, we mean the delta values between two points, added to the delta of the next two points, as such:
+
+$$\sum_{n=0}^{10} x_n - x_{n+1}$$
 
 
-\subsection{fail\_tracker.py}
-The purpose of the Fail\_tracker class is to keep track of the failure occurrence and frequency. The intended usage is to instantiate an instance of the class, and call the \lstinline{strike()} method when an invalid read has occurred. This method increases an internal counter, which will then raise an exception if it passes a pre-defined threshold.
+\subsection{error\_tracker.py}
+The purpose of the Error\_tracker class is to keep track of the error occurrence and frequency. The intended usage is to instantiate an instance of the class, and call the \lstinline{error\_occurred()} method when an invalid read has occurred. This method increases an internal counter, which will then raise an exception if it passes a pre-defined threshold.
 
-\subsubsection{GRACE\_PERIOD constant}
-When invalid reads occur due to some external or internal circumstances, it might not be beneficial to count all errors within a given timeframe towards raising an exception. We are not interested in sending an alert when short periods of errors occur, instead, it is at the long-lasting periods of polling errors an exception should be raised. To account for these short bursts, we use a \lstinline{GRACE_PERIOD} constant. This constant is used for the time window after the \lstinline{strike()} method has been called, during which sequential calls  will not count towards the exception raising threshold. This time period is measured in second.
+\subsubsection{The Grace Period}
+When invalid reads occur due to some temporary circumstance, it might not be beneficial to count all errors within a given timeframe towards raising an exception. We are not interested in sending an alert when short periods of errors occur, instead, it is at the long-lasting periods of polling errors an exception should be raised. To account for these short bursts, we use a \lstinline{GRACE\_PERIOD} constant. This constant is used for the time window (in seconds) after the \lstinline{error\_occurred()} method has been called, during which sequential calls  will not count toward the exception threshold.
 
-\subsubsection{COOLDOWN constant}
-Since the errors 
+\subsubsection{The Cooldown Period}
+We don't want errors to rack up towards an exception over a longer period of time, so it would make sense to reset or decrease the internal error counter after a while. To enable this, a cooldown period is started after the grace period, during which any calls to to the \lstinline{error_occurred()} method will interrupt the cooldown period, and a new grace period will ensue. However, if the cooldown period ends without any calls being made to the \lstinline{error\_occurred} method, the internal error counter will decrease by one. This way of self-regulation ensures that only a long-lasting and consistent frequency of errors raise an exception.
+
 
 \subsection{Data Transmissions}
