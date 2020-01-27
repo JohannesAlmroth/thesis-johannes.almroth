@@ -1,3 +1,6 @@
+# pylint: disable=import-error
+from utime import sleep
+
 def generator(start = 0, inc = 1):
 	x = start
 	while True:
@@ -9,8 +12,11 @@ gen = generator()
 def default_poller():
 	return next(gen)
 
-def default_transmitter(msg):
+def default_transmitter(*args):
 	return
+
+class DisconnectErrorException(Exception):
+	pass
 
 class Reader:
 	def __init__(self, 
@@ -21,8 +27,8 @@ class Reader:
 	unit_value_min = 0,
 
 	polling_delay_init = 1,
-	polling_delay_max = 3,
-	polling_delay_min = 0.5,
+	polling_delay_max = 5,
+	polling_delay_min = 1,
 	polling_delay_inc = 0.5,
 
 	delta_treshold = 10,
@@ -81,6 +87,7 @@ class Reader:
 
 	def run(self, iterations = 1):
 		for _ in range(iterations):
+			sleep(self.polling_delay)
 			self.iterations += 1
 			value = self.poller()
 			if(self.verify_data(value)):
@@ -90,6 +97,7 @@ class Reader:
 				
 				self.adjust_polling_rate()
 				self.transmitter(value)
+
 
 	def verify_data(self, value):
 		return (value <= self.MAX_UNIT_VALUE) and (value >= self.MIN_UNIT_VALUE)

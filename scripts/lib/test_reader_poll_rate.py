@@ -105,6 +105,17 @@ class TestReaderPollRate(unittest.TestCase):
         self.assertTrue(prev_delay == r.polling_delay)
 
         self.assertTrue(r.iterations == 40)
+    
+    def test_poller_disconnect(self):
+        l = [100 for i in range(10)]
+        l.extend([75 for i in range(10)])
+        l.extend([0 for i in range(30)])
+        p = iter(l)
+
+        r = re.Reader(poller=lambda:next(p))
+
+        with self.assertRaises(re.DisconnectErrorException):
+            r.run(50)
 
 if __name__ == '__main__':
     unittest.main()

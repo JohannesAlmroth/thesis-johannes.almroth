@@ -1,9 +1,16 @@
 # pylint: disable=undefined-variable
 # pylint: disable=import-error
-RUN_TESTS = True
-RUN_PROGRAM = False
+RUN_TESTS = False
+RUN_PROGRAM = True
 
-# t = pybytes.send_signal
+
+import sqnsupgrade
+sqnsupgrade.run('upgdiff_33080-to-39529.dup', 'updater.elf')
+
+
+def t(value):
+	print("Now sending value", value)
+	pybytes.send_signal(2, value)
 
 if RUN_TESTS:
 	from test_reader_poll_rate import *
