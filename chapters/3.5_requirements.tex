@@ -19,7 +19,7 @@
 
 In this section we will discuss some the software requirements imposed on the IoT-enabled scale device that will be implemented, and what behavior we wish to see from the device in the case of different scenarios. These areas were chosen because of their relative simple nature, as well as their relevance to other similar devices. The purpose of these requirements is to emulate the constraints placed on devices in the real world, specifically an all-purpose IoT-scale that Vetek could use in a pilot project for evaluation and future iterations. 
 
-There are no specific requirements set for the hardware implementation given the initial  Any additional requirements in terms of energy consumption, sizing, etc. would be too vast for the scope of this paper. 
+There are no specific requirements set for the hardware implementation. Any additional requirements in terms of energy consumption, sizing, etc. would be too vast for the scope of this paper. 
 
 \section{Data Polling Rate}
 In most IoT devices the relevant data is provided by some form of sensor, whether it be a scale, thermometer or something entirely different.\cite{what_is_iot} The type of sensor being used has a huge impact on the IoT device, especially when considering that they have to be powered by the same energy source. The simplest way of deciding when to poll data from a sensor is to let it do so at a fixed and constant rate, often enough to be relevant, and seldom enough as to not waste precious energy. However, if within the context of the application we can conclude that no data needs to be polled (for a while), then subsequently no data will need to be sent, and thus we save energy on both ends of the system. For some applications there might even be longer periods of downtime where it is not relevant to conduct monitoring on the given sensor, \eg during nighttime, closing hours, etc. Another interesting angle is modifying the polling rate depending on the data itself. A simple example of a behavior would be to have a slower polling rate at stable values, and increase it when experiencing large enough changes. Given the conditions of an IoT device powered by batteries, it is not unreasonable to assume that readings might not always be accurate at times. Depending on the sensor, spikes and drops of false values might occur, and not taking these scenarios into account would be prudent. 
@@ -40,7 +40,7 @@ In this paper, we want the device to change its polling rate depending on the da
     \label{fig:spikes}
 	\end{subfigure}
 \end{figure}
-In figure \ref{sub@fig:plateu} we see the sensor outputting stable data around a fixed value, to then experiencing a decrease, two times. We want the readings to increase during the data changes, and decrease during the stable plateaus.
+In figure \ref{sub@fig:plateu} we see the sensor outputting stable data around a fixed value, to then experiencing a decrease two times. We want the readings to increase during the data changes, and decrease during the stable plateaus.
 
 In figure \ref{sub@fig:spikes} we see the sensor outputting some data values with sudden spikes in them. For the sake of simplicity, we will assume that our scale has the maximum capacity of 100 kg, and thus can easily discern that any value above this is a false reading. In other contexts, false readings might be harder to detect and handle.
 

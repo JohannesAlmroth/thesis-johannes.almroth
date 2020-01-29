@@ -45,21 +45,47 @@ It outputs data via two of its pins, the DAT and the CLK. The CLK pin will outpu
 	\label{fig:hx711}
 \end{figure}
 
-
 \subsection{Microcontroller}
 The microcontroller used for this paper was the FiPy development board from PyCom. It boasts a wide range of capabilities when it comes to communication protocols, NB-IoT being one of the five available.\cite{fipy-docs} With the supplied expansion board, connections via pinout is possible. It runs on micropython, which is an implementation of Python 3 optimized to run on microcontrollers.\cite{micropython}
-
-%TODO: Add picture of FiPy and its expansion board
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{fipySide.png}
+    \caption{The FiPy as seen from the side}
+    \label{fig:fipySide}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{exp_board.png}
+    \caption{The expansion board of the FiPy}
+    \label{fig:exp_board}
+	\end{subfigure}
+\end{figure}
 
 \subsection{Power Source}
 In the early stages of the project, the hardware was powered via USB cable from a computer. Since the USB was of type micro, the voltage output was 5V. The benefit of this setup was a simple wiring schema where each component powered the next in line. The drawback was that the FiPy could only supply the ADC with 3V, which in turn affected the ADC's ability to read data from the load cell. During testing, the output rate of the raw data would be infrequent and erratic, sometimes taking several seconds to produce a single value. The values themselves did not correspond to increases and decreases in force being applied to the load cell, and would seemingly spike and crash at random. These problems were largely in part due to insufficient voltage being supplied to the ADC and load cell as later setups would reveal.
-%TODO: Add schematic of this wiring
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{wiring_comp.jpeg}
+	\caption{Made with Lucid Charts\cite{lucid-chart}}
+	\label{fig:wiring_comp}
+\end{figure}
 
 To remedy this, an approach using two different power sources was tried, where the ADC was powered by a wall outlet at a higher voltage, while the FiPy kept the USB. This resulted in electrical interference throughout the system, because of two different grounds being present in the circuit. The output rate of the data values had improved to a bit more stable rhythm than before, and the raw data values were a bit more responsive to the force applied to the load cell. 
-%TODO: Add schematic of this wiring
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{wiring_outlet.jpeg}
+	\caption{Made with Lucid Charts\cite{lucid-chart}}
+	\label{fig:wiring_outlet}
+\end{figure}
 
 The best setup that was tested involved an Otii battery toolbox, which is an advanced piece of hardware used to profile and emulate batteries.\cite{otii-web} With this piece of equipment, a common ground was provided to all components, as well as adequate voltage. It was capable of supplying 5V to both the FiPy and the ADC at the same time, which in turn enabled stable output of data values. When force was applied to the load cell, the data values responded accordingly with an increase or decrease in value. Due to time constraints and hardware availability, the setup could not be used for real network transmissions of the load cell data.
-%TODO: Add schematic of this wiring
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{wiring_otii.jpeg}
+	\caption{Made with Lucid Charts\cite{lucid-chart}}
+	\label{fig:wiring_otii}
+\end{figure}
 
 All data values produced by the load cell and ADC during these tests were raw values, as a calibration for kg/lb values for our intents and purposes would not bring any significant enhancements to the project.
 
@@ -89,6 +115,9 @@ The main method of the \lstinline{reader} instance is the \lstinline{run()} meth
 \subsubsection{Error Check}
 The polled data value is subsequently checked for validity in the form of out-of-bounds values or extreme delta changes. A separate class called \lstinline{Error_tracker} monitors the interval and frequency of these occurrences, and the purpose of the class is to raise an exception when the error rate is deemed too high, and some form of remedial action needs to be taken. The internal workings of the \lstinline{Error_tracker} will be explained in a separate section.
 
+%TODO
+\subsubsection{Disconnect Check}
+
 \subsubsection{Adjustment of polling rate}
 If the value is deemed valid, it is added to a FIFO (First-in, First-out) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased. When we say total delta value, we mean the delta values between two points, added to the delta of the next two points, as such:
 
@@ -111,17 +140,18 @@ In figure \ref{fig:wifi_longterm} and figure \ref{fig:wifi_raw_values} we can se
 
 \begin{figure}[H]
 \centering
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{wifi_longterm.png}
     \caption{Data transmitted via Wifi}
     \label{fig:wifi_longterm}
 	\end{subfigure}
 	%
-	\begin{subfigure}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{wifi_raw_values.png}
-    \caption{}
+    \caption{Values transmitted via Wifi}
     \label{fig:wifi_raw_values}
 	\end{subfigure}
 \end{figure}
 
-Due to time limitations in the project, no actual tests of the transmission of the data via NB-IoT was made 
+Due to time limitations in the project, no actual tests of the transmission of the data via NB-IoT were performed.
+%TODO: Write more here

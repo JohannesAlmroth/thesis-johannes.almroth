@@ -1,3 +1,5 @@
+# Code taken from https://github.com/micropython/micropython-lib/tree/master/unittest
+
 import sys
 
 
@@ -180,7 +182,6 @@ class TestResult:
     def wasSuccessful(self):
         return self.errorsNum == 0 and self.failuresNum == 0
 
-# TODO: Uncompliant
 def run_class(c, test_result):
     o = c()
     set_up = getattr(o, "setUp", lambda: None)
