@@ -1,11 +1,11 @@
 # pylint: disable=undefined-variable
 # pylint: disable=import-error
-RUN_TESTS = False
-RUN_PROGRAM = True
+RUN_TESTS = True
+RUN_PROGRAM = False
 
 
-import sqnsupgrade
-sqnsupgrade.run('upgdiff_33080-to-39529.dup', 'updater.elf')
+# import sqnsupgrade
+# sqnsupgrade.run('upgdiff_33080-to-39529.dup', 'updater.elf')
 
 
 def t(value):

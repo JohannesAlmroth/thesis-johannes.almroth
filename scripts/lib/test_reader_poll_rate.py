@@ -8,7 +8,7 @@ class TestReaderPollRate(unittest.TestCase):
 
     def test_run_function_works(self):
         # Arrange
-        r = re.Reader()
+        r = re.Reader(testing=True)
 
         # Act
         r.run(10)
@@ -18,15 +18,16 @@ class TestReaderPollRate(unittest.TestCase):
     
     def test_polling_delay_increment_mismatch(self):
         with self.assertRaises(ValueError):
-            re.Reader(polling_delay_inc=0.5, polling_delay_init=0.6)
+            re.Reader(testing=True, polling_delay_inc=0.5, polling_delay_init=0.6)
 
     def test_polling_delay_increment_mismatch_2(self):
         with self.assertRaises(ValueError):
-            re.Reader(polling_delay_max=1 ,polling_delay_init=1, polling_delay_inc=0.3)
+            re.Reader(testing=True, polling_delay_max=1 ,polling_delay_init=1, polling_delay_inc=0.35)
+            
 
     def test_polling_delay_increment_correct_input(self):
         try:
-            re.Reader(polling_delay_max=1 ,polling_delay_min=0, polling_delay_init=1, polling_delay_inc=0.25)
+            re.Reader(testing=True, polling_delay_max=1 ,polling_delay_min=0, polling_delay_init=1, polling_delay_inc=0.25)
         except:
             self.fail()
 
@@ -34,7 +35,7 @@ class TestReaderPollRate(unittest.TestCase):
         # Arrange
         l = [i for i in range(0, 100, 5)]
         p = iter(l)
-        r = re.Reader(poller=lambda: next(p))
+        r = re.Reader(testing=True, poller=lambda: next(p))
         init_delay = r.polling_delay
 
         # Act
@@ -46,10 +47,9 @@ class TestReaderPollRate(unittest.TestCase):
 
     def test_polling_delay_increases(self):
         # Arrange
-        r = re.Reader()
         l = [50 for i in range(20)]
         p = iter(l)
-        r = re.Reader(poller=lambda: next(p))
+        r = re.Reader(testing=True, poller=lambda: next(p), delta_treshold=5)
         init_delay = r.polling_delay
 
         # Act
@@ -66,7 +66,7 @@ class TestReaderPollRate(unittest.TestCase):
         l.extend([i for i in range(100, 0, -5)])
         l.extend([0 for i in range(100)])
         p = iter(l)
-        r = re.Reader(poller=lambda:next(p))
+        r = re.Reader(testing=True, poller=lambda:next(p), delta_treshold=5)
         prev_delay = r.polling_delay
 
         # Act / Assert
@@ -87,7 +87,7 @@ class TestReaderPollRate(unittest.TestCase):
         l.extend([100 for i in range(10)])
         l.extend([150 for i in range(10)])
         p = iter(l)
-        r = re.Reader(poller=lambda:next(p), unit_value_min=50, unit_value_max=100)
+        r = re.Reader(testing=True, poller=lambda:next(p), unit_value_min=50, unit_value_max=100)
 
         # Act / Assert
         r.run(10)
@@ -106,13 +106,14 @@ class TestReaderPollRate(unittest.TestCase):
 
         self.assertTrue(r.iterations == 40)
     
+    #TODO: Pass this test
     def test_poller_disconnect(self):
         l = [100 for i in range(10)]
         l.extend([75 for i in range(10)])
         l.extend([0 for i in range(30)])
         p = iter(l)
 
-        r = re.Reader(poller=lambda:next(p))
+        r = re.Reader(testing=True, poller=lambda:next(p))
 
         with self.assertRaises(re.DisconnectErrorException):
             r.run(50)

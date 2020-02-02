@@ -20,25 +20,32 @@ class DisconnectErrorException(Exception):
 
 class Reader:
 	def __init__(self, 
+	testing = False,
 	poller = default_poller,
 	transmitter = default_transmitter,
+
+	buffer_len = 10,
 
 	unit_value_max = 100,
 	unit_value_min = 0,
 
-	polling_delay_init = 1,
+	polling_delay_init = 3,
 	polling_delay_max = 5,
 	polling_delay_min = 1,
 	polling_delay_inc = 0.5,
 
 	delta_treshold = 10,
+	dc_treshold = 10,
+
 	debug = False
 	):
 		self.DEBUG = debug
+		self.TESTING = testing
 		self.poller = poller
 		self.transmitter = transmitter
-		self.data_buffer = FIFO(10)
+		self.data_buffer = FIFO(buffer_len)
 		self.DELTA_THRESHOLD = delta_treshold
+		self.DC_THRESHOLD = dc_treshold
 		# Defines the range of units that can be polled
 		# while still considered normal within the
 		# context of the application
@@ -87,7 +94,8 @@ class Reader:
 
 	def run(self, iterations = 1):
 		for _ in range(iterations):
-			sleep(self.polling_delay)
+			if(not self.TESTING): sleep(self.polling_delay)
+
 			self.iterations += 1
 			value = self.poller()
 			if(self.verify_data(value)):
@@ -95,8 +103,13 @@ class Reader:
 
 				if self.DEBUG: print("Queue is", self.data_buffer.queue)
 				
+				self.dc_check()
 				self.adjust_polling_rate()
 				self.transmitter(value)
+
+	def dc_check(self):
+		if (self.data_buffer.maxlen == len(self.data_buffer.queue) and all(0.0 == x for x in self.data_buffer.queue)):
+			raise DisconnectErrorException
 
 
 	def verify_data(self, value):
