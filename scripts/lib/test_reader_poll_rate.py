@@ -106,7 +106,6 @@ class TestReaderPollRate(unittest.TestCase):
 
         self.assertTrue(r.iterations == 40)
     
-    #TODO: Pass this test
     def test_poller_disconnect(self):
         l = [100 for i in range(10)]
         l.extend([75 for i in range(10)])

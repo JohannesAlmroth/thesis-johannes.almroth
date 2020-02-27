@@ -39,7 +39,7 @@ The polled data value is subsequently checked for validity in the form of out-of
 
 
 \subsubsection{Adjustment of polling rate}
-If the value is deemed valid, it is added to a FIFO (First-in, First-out) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased. The total delta value is the the delta values between two points added to the delta of the next two points, as follows:
+If the value is deemed valid, it is added to a First-in, First-out (FIFO) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased. The total delta value is the the delta values between two points added to the delta of the next two points, as follows:
 
 $$\sum_{n=0}^{10} x_n - x_{n+1}$$
 
@@ -55,7 +55,7 @@ If errors rack up towards an exception over a longer period of time, it would lo
 
 
 \subsection{Data Transmissions}
-Data transmission tests were done separately from the load cell using dummy data. Pycom, the parent company behind the microcontroller used in this project also operate a cloud-based device management platform. \cite{pybytes-website} Via the pybytes platform, configuration of the network settings of the device can be managed via a firmware updater. 
+Data transmission tests were done separately from the load cell using fictional data. Pycom, the parent company behind the microcontroller used in this project also operate a cloud-based device management platform. \cite{pybytes-website} Via the pybytes platform, configuration of the network settings of the device can be managed via a firmware updater. 
 In figure \ref{fig:wifi_longterm} and figure \ref{fig:wifi_raw_values} we can see data being transmitted via Wifi on a home network. The data is then displayed via graphs on the pybytes platform.
 
 \begin{figure}[H]
@@ -86,7 +86,7 @@ These results show a small starting point of implementing a IoT device using a l
 \subsection{Limitations}
 %Limitations: what can’t the results tell us?
 %% Long term functionality
-The most glaring issue with the way the hardware and software were tested during this project pertains to the time duration. When testing the connection between the load cell and microcontroller, as well as transmitting the data from the microcontroller, the tests were short compared to the intended
+The most glaring issue with the way the hardware and software were tested during this project pertains to the time duration. When testing the connection between the load cell and microcontroller, as well as transmitting the data from the microcontroller, the tests were short compared to the intended %%TODO
 %% Mass production
 This project was done on a small scale, and extensive research in multiple different areas need to be conducted to even get a IoT enabled scale close to being produced for functional use, commercial or private.
 %% Variance for customer
