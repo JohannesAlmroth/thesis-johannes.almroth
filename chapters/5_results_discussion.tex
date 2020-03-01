@@ -34,9 +34,8 @@ The main method of the \lstinline{reader} instance is the \lstinline{run()} meth
 \subsubsection{Error Check}
 The polled data value is subsequently checked for validity in the form of out-of-bounds values or extreme delta changes. A separate class called \lstinline{Error_tracker} monitors the interval and frequency of these occurrences, and the purpose of the class is to raise an exception when the error rate is deemed too high, and some form of remedial action needs to be taken. The internal workings of the \lstinline{Error_tracker} will be explained in a separate section.
 
-%TODO
 \subsubsection{Disconnect Check}
-In the case of a disconnect, the sensor outputs 0.0, and if the preceding values in the data buffer are not anywhere close to 0 we should raise a disconnect error as per the requirements. We set an arbitrary limit that if the polled values are in above the half of the permitted max value, then drops to 0, it's considered a disconnect.
+In the case of a disconnect, the sensor outputs 0.0, and if the preceding values in the data buffer are not anywhere close to 0 we should raise a disconnect error as per the requirements. To do this, we set an arbitrary cutoff limit at half the permitted max value. If the polled data is 0.0 while the data buffer still contains values above the specified limit, it is considered a disconnect since the drop in values is considered to high to be a natural application behavior.
 
 \subsubsection{Adjustment of polling rate}
 If the value is deemed valid, it is added to a First-in, First-out (FIFO) buffer of the most recent values. The contents of the buffer are then summed into a total delta value, which is used to adjust the polling rate. If the total delta surpasses a pre-defined threshold, the polling rate is increased, whereas if it is lower it might be maintained or decreased. The total delta value is the the delta values between two points added to the delta of the next two points, as follows:
