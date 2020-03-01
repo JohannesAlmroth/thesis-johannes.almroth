@@ -30,15 +30,16 @@ In this paper, we want the device to change its polling rate depending on the da
 \centering
 	\begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{plateu.png}
-    \caption{Decreasing values}
+    \caption{}
     \label{fig:plateu}
 	\end{subfigure}
 	%
 	\begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{some_spikes.png}
-    \caption{Graph with spikes}
+    \caption{}
     \label{fig:spikes}
 	\end{subfigure}
+\caption{Graph a) shows plateauing development of values, while graph b) displays spikes in the readings}
 \end{figure}
 
 In figure \ref{sub@fig:plateu} we see the sensor outputting stable data around a fixed value, to then experiencing a decrease two times. We want the readings to increase during the data changes, and decrease during the stable plateaus.
@@ -69,6 +70,7 @@ The requirements set on our device state that it has to have some form of self-r
     \caption{Sensor produces too much invalid data}
     \label{fig:too_much_invalid}
 	\end{subfigure}
+\caption{}
 \end{figure}
 In figure \ref{sub@fig:recover} the sensor outputs some invalid data, yet it recovers. No errors should be raised.
 
@@ -84,11 +86,9 @@ The requirements on this device states that it should raise a disconnect error i
 
 \begin{figure}[H]
 \centering
-	\begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\textwidth]{disconnect.png}
+    \includegraphics[width=0.3\textwidth]{disconnect.png}
     \caption{The sensor disconnects}
     \label{fig:disconnect}
-	\end{subfigure}
 \end{figure}
 
 In figure \ref{sub@fig:disconnect} the data values drop from 60 to 0 in the span of one data point, which would indicate a sensor disconnect.
