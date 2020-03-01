@@ -19,10 +19,6 @@ class TestReaderPollRate(unittest.TestCase):
     def test_polling_delay_increment_mismatch(self):
         with self.assertRaises(ValueError):
             re.Reader(testing=True, polling_delay_inc=0.5, polling_delay_init=0.6)
-
-    def test_polling_delay_increment_mismatch_2(self):
-        with self.assertRaises(ValueError):
-            re.Reader(testing=True, polling_delay_max=1 ,polling_delay_init=1, polling_delay_inc=0.35)
             
 
     def test_polling_delay_increment_correct_input(self):
@@ -109,13 +105,13 @@ class TestReaderPollRate(unittest.TestCase):
     def test_poller_disconnect(self):
         l = [100 for i in range(10)]
         l.extend([75 for i in range(10)])
-        l.extend([0 for i in range(30)])
+        l.extend([0 for i in range(10)])
         p = iter(l)
 
         r = re.Reader(testing=True, poller=lambda:next(p))
 
         with self.assertRaises(re.DisconnectErrorException):
-            r.run(50)
+            r.run(30)
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,11 +3,6 @@
 RUN_TESTS = True
 RUN_PROGRAM = False
 
-
-# import sqnsupgrade
-# sqnsupgrade.run('upgdiff_33080-to-39529.dup', 'updater.elf')
-
-
 def t(value):
 	print("Now sending value", value)
 	pybytes.send_signal(2, value)

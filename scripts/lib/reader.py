@@ -108,7 +108,13 @@ class Reader:
 				self.transmitter(value)
 
 	def dc_check(self):
-		if (self.data_buffer.maxlen == len(self.data_buffer.queue) and all(0.0 == x for x in self.data_buffer.queue)):
+		if (self.data_buffer.maxlen != len(self.data_buffer.queue)): return
+
+		x = list(filter((lambda y: y > 50), self.data_buffer.queue[:3]))
+		z = list(filter((lambda y: y == 0), self.data_buffer.queue[4:]))
+
+		if self.DEBUG: print("x is", list(x), "z is", list(z))
+		if (any(x) and (len(z) != 0)):
 			raise DisconnectErrorException
 
 
