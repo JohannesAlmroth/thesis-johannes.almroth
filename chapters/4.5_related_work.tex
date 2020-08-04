@@ -3,8 +3,11 @@ A similar project done at KTH in 2019 served as the main inspiration for this pa
 
 % Something related to data polling
 % TODO: Cite ADP-MAC that adjusts itself on incoming traffic
-One of the implementation details in this project concerned the data polling rate, which potentially affects battery life and device behavior. The ways to regulate data polling is as varied as there are systems and devices that implement it, and some interesting 
-% TODO: Cite nanonetwork polling that adjusts itself to network conditions
+One of the implementation details in this project concerned the data polling rate, which could potentially affect battery life of a sensor. The ways to regulate data polling is as varied as there are systems and devices that implement it, and apart from looking at the the energy consumption between the polling unit and the sensor, the following works look at the aspect of data polling in the context of a system, which is particularly interesting in the perspective of IoT since multiple devices will often share the same network and need to optimize the use of shared resources.
 
-% Something related to error handling.
+In a 2018 study by Siddiqui \etal \cite{ADP-MAC} a new protocol was developed for the MAC layer of a wireless sensor network which adjusted its polling interval depending on the rate of incoming traffic, and given certain types of traffic, was able to optimize energy and delay performance compared to another MAC protocol. 
+% TODO: Cite nanonetwork polling that adjusts itself to network conditions
+In a work by Yu \etal concerning electromagnetic-based wireless nano sensor networks, a polling scheme is proposed that adjusts itself according to network conditions on the IoT backhaul portion of the system, which improved bandwidth efficiency and lessened energy consumption. 
+
+% Something related to error detection.
 % TODO: Find at least two articles relating to this
