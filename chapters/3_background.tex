@@ -1,29 +1,30 @@
 % Should be ~2 pages 
 
-% **Problems**
-
-% - Too much mixed information
-% - The expensive stuff is not expensive
-% - Requirements should be its own chapter
-
-% **Needs to contain**
-
-% - More subheadings
-
 % **Structure**
 
 % - General Background
-% - LTE-M vs NB-IoT
-% - Market in Sweden
 
 \section{General Background}
-IoT has been lauded as a world-changing technology that will significantly affect our economy as well as our way of living. In a report by the GSMA, the total number of IoT devices is estimated to triple by 2025, bringing it to \$25.2 \textit{billion}.\cite{gsma-report} Meanwhile, the global IoT revenue will fourfold from 2018, increasing it to \$4.4 \textit{billion}.\cite{gsma-report} While there undeniably is a lot of excitement and potential economic impact associated with IoT, currently, many consumers just associate the term with connecting a common toaster or coffee machine to a Wi-Fi network. While this technically fits the definition for an IoT device,\cite{what_is_iot} the significant use cases will probably be implemented with different sensors, such as scales, thermometers, etc. that will further improve automatization and optimization processes. As an example, the key categories within the predicted growth are smart homes (\eg~ security devices) and smart buildings (\eg~ energy consumption sensors).\cite{gsma-report} For the predicted growth to happen, businesses need to take a chance and work on projects that implement different IoT technologies, and to enable this, the 3GPP has developed some Low-Power Wide-Area Network (LPWAN) protocols that focus on different key aspects that make IoT possible. Some of these aspect include long battery life, high connection density, indoor coverage and geo-tracking capabilities. Aside from security, one of the biggest challenges regarding IoT devices relate to limitations arising from energy infrastructure. As mentioned earlier, one of the core issues NB-IoT aims to achieve is to be a low-power technology, thus decreasing the maintenance needed for battery-powered devices. A claim often paraded with NB-IoT is that it enables a battery-time of up to 10-years,\cite{gsma-nb-iot} though it is worth mentioning that over such a period of time the underlying IoT technology (in the form of microcontrollers/sensors) will probably require more frequent maintenance than the batteries themselves.
+IoT has been lauded as a world-changing technology that will significantly affect our economy as well as our way of living. In a report by the GSMA, the total number of IoT devices is estimated to triple by 2025, bringing it to \$25.2 \textit{billion} \cite{gsma-report}. Meanwhile, the global IoT revenue will fourfold from 2018, increasing it to \$4.4 \textit{billion} \cite{gsma-report}. While there undeniably is a lot of excitement and potential economic impact associated with IoT, currently, many consumers just associate the term with connecting a common toaster or coffee machine to a Wi-Fi network. While this technically fits the definition for an IoT device,\cite{what_is_iot} the significant use cases will probably be implemented with different sensors, such as scales, thermometers, etc. that will further improve automatization and optimization processes. As an example, the key categories within the predicted growth are smart homes (\eg~ security devices) and smart buildings (\eg~ energy consumption sensors) \cite{gsma-report}. For the predicted growth to happen, businesses need to take a chance and work on projects that implement different IoT technologies, and to enable this, the 3GPP has developed some Low-Power Wide-Area Network (LPWAN) protocols that focus on different key aspects that make IoT possible. Some of these aspect include long battery life, high connection density, indoor coverage and geo-tracking capabilities. Aside from security, one of the biggest challenges regarding IoT devices relate to limitations arising from energy infrastructure. As mentioned earlier, one of the core issues NB-IoT aims to achieve is to be a low-power technology, thus decreasing the maintenance needed for battery-powered devices. A claim often paraded with NB-IoT is that it enables a battery-time of up to 10-years, \cite{gsma-nb-iot} though it is worth mentioning that over such a period of time the underlying IoT technology (in the form of microcontrollers/sensors) will probably require more frequent maintenance than the batteries themselves.
 
-% Background about making your own IoT sensor
-% TODO: Find one articles relating to this
+\section{Related Work}
 
-% Background about energy efficiency
-% TODO: Find two articles relating to this
+A similar project done at KTH in 2019 served as the main inspiration for this paper \cite{hospital}. The goal of that project was to monitor the battery levels in defibrillators via an IoT-enabled scale, and thereby optimize the battery-swapping routine. This project proved successful in its implementation, but faced a slew of challenges that prevented it from ever being integrated into an actual user environment, due to security concerns related to the use of the hospital Wi-Fi. This shows the importance of seeing the bigger picture of where and how the device will be implemented by the end-user, and having that in mind when making technology and design trade-offs throughout the development process.
+
+\subsection{Battery Life}
+A challenge posed to the IoT technology pertains to the battery life of the devices, and how it will limit their use and operability. If battery life is unreliable and short, they may cause business loss, or high operational costs. If engineers need be deployed to swap batteries and monitor the life-cycle of a device in case it goes down, the benefits of the technology is severely limited \cite{iot-battery}. A way to mitigate this is by considering software design and how often the code executes power hungry operations. 
+
+One potentially expensive operation might be the data polling, the rate of which could potentially affect the battery life of a sensor. The ways to regulate data polling is as varied as there are systems and devices that implement it, and apart from looking at the the energy consumption between the polling unit and the sensor, the following two articles look at the aspect of data polling in the context of a system, which is particularly interesting in the perspective of IoT since multiple devices will often share the same network and need to optimize the use of shared resources.
+
+In a 2018 study by Siddiqui \etal \cite{ADP-MAC} a new protocol was developed for the MAC layer of a wireless sensor network which adjusted its polling interval depending on the rate of incoming traffic, and given certain types of traffic, was able to optimize energy and delay performance compared to another MAC protocol. This highlights how polling can be regulated in conjunction with the ebb and flow of incoming values the importance of being dynamic when working with mutable network parameters.
+
+In a work by Yu \etal \cite{nanonetworks} concerning electromagnetic-based wireless nano sensor networks, a polling scheme is proposed that adjusts itself according to network conditions on the IoT backhaul portion of the system, which improved bandwidth efficiency and lessened energy consumption. 
+
+\subsection{Error Detection}
+% Something related to error detection.
+% TODO: Find at least two articles relating to this
+If the associated costs aren't too high, we would be wise in cleaning the data collected by the sensor. Measures may range from simple algorithms to complex industrial tools fine-tuned to a specific data domain. In an article by Abedjan \etal \cite{data-errors} multiple categories of error detection are presented. A reasonable first step for this project would be to implement a simple algorithm from one of these categories. The article provides a good overview of what to keep in mind when ensuring data quality, such as running multiple data cleaning tools, the order in which they run and ensuring that end-user effort is kept to a minimum throughout the process, as to lessen operation overhead costs.
+
 
 % \section{NB-IoT vs. LTE-M}
 % The two most prominent of the protocols developed by the 3GPP are NB-IoT and LTE-M. To utilize the technologies, a NB-IoT or LTE-M SIM-card has to be acquired from a local network provider, and inserted into a compatible piece of software within range from a base station.
